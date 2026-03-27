@@ -20,6 +20,7 @@
     "*.{json,md,css,html}": "prettier --write"
   },
   "dependencies": {
+    "@astrojs/node": "^8.3.4",
     "@sanity/client": "^7.20.0",
     "@sanity/image-url": "^2.1.0",
     "astro": "^5.0.0"
