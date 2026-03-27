@@ -8,19 +8,70 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<nav aria-label="Main navigation">
-  <ul>
-    {items.map(item => (
-      <li>
-        <a href={item.href}>{item.label}</a>
-        {item.children && item.children.length > 0 && (
-          <ul>
-            {item.children.map(child => (
-              <li><a href={child.href}>{child.label}</a></li>
-            ))}
-          </ul>
-        )}
-      </li>
-    ))}
+<nav role="navigation" aria-label="Main navigation">
+  <ul id="main-menu" class="menu">
+    {
+      items.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            aria-haspopup={item.children && item.children.length > 0 ? 'true' : undefined}
+            aria-expanded={item.children && item.children.length > 0 ? 'false' : undefined}
+          >
+            {item.label}
+          </a>
+          {item.children && item.children.length > 0 && (
+            <ul class="submenu">
+              {item.children.map((child) => (
+                <li>
+                  <a href={child.href}>{child.label}</a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))
+    }
   </ul>
 </nav>
+
+<style>
+  nav {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  nav ul.menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav li {
+    position: relative;
+  }
+
+  nav ul.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    z-index: 100;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav li:hover > ul.submenu,
+  nav li:focus-within > ul.submenu {
+    display: block;
+  }
+
+  nav a {
+    display: block;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+  }
+</style>
