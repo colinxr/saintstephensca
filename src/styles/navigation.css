@@ -5,6 +5,27 @@ nav {
   background-color: var(--bg-color);
 }
 
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--link-color);
+}
+
+.menu-toggle:hover,
+.menu-toggle:focus {
+  background-color: var(--bg-alt);
+}
+
+.menu-toggle:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: -2px;
+}
+
 nav ul.menu {
   display: flex;
   list-style: none;
@@ -33,7 +54,7 @@ nav a:focus {
 
 nav a:focus {
   outline: 2px solid var(--accent-color);
-  outline-offset: 2px;
+  outline-offset: -2px;
 }
 
 ul.submenu {
@@ -72,4 +93,39 @@ ul.submenu a {
 ul.submenu a:hover,
 ul.submenu a:focus {
   background-color: var(--bg-alt);
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  nav ul.menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  nav ul.menu.open {
+    display: flex;
+  }
+
+  nav li {
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  nav li:last-child {
+    border-bottom: none;
+  }
+
+  ul.submenu {
+    position: static;
+    box-shadow: none;
+    border: none;
+    background-color: var(--bg-alt);
+  }
+
+  ul.submenu a {
+    padding-left: 2rem;
+  }
 }
