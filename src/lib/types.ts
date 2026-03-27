@@ -1,6 +1,6 @@
 export interface NavigationItem {
   label: string;
-  href: string;
+  link?: string;
   children?: NavigationItem[];
 }
 

@@ -23,7 +23,7 @@ const { items } = Astro.props;
       items.map((item) => (
         <li>
           <a
-            href={item.href}
+            href={item.link || '#'}
             aria-haspopup={item.children && item.children.length > 0 ? 'true' : undefined}
             aria-expanded={item.children && item.children.length > 0 ? 'false' : undefined}
           >
@@ -33,7 +33,7 @@ const { items } = Astro.props;
             <ul class="submenu">
               {item.children.map((child) => (
                 <li>
-                  <a href={child.href}>{child.label}</a>
+                  <a href={child.link || '#'}>{child.label}</a>
                 </li>
               ))}
             </ul>
@@ -48,6 +48,7 @@ const { items } = Astro.props;
   document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.querySelector('.menu-toggle');
     const mainMenu = document.getElementById('main-menu');
+    const menuItems = document.querySelectorAll('nav li');
 
     if (menuToggle && mainMenu) {
       menuToggle.addEventListener('click', () => {
@@ -56,5 +57,68 @@ const { items } = Astro.props;
         mainMenu.classList.toggle('open');
       });
     }
+
+    menuItems.forEach((item) => {
+      const link = item.querySelector('a');
+      const submenu = item.querySelector('ul');
+
+      if (submenu) {
+        link?.addEventListener('keydown', (e: KeyboardEvent) => {
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            submenu.style.display = 'block';
+            (link as HTMLAnchorElement).setAttribute('aria-expanded', 'true');
+            const firstSubmenuLink = submenu.querySelector('a');
+            if (firstSubmenuLink) {
+              (firstSubmenuLink as HTMLAnchorElement).focus();
+            }
+          }
+          if (e.key === 'Escape') {
+            submenu.style.display = 'none';
+            (link as HTMLAnchorElement).setAttribute('aria-expanded', 'false');
+            (link as HTMLAnchorElement).focus();
+          }
+        });
+
+        link?.addEventListener('focus', () => {
+          submenu.style.display = 'block';
+          if (link) {
+            (link as HTMLAnchorElement).setAttribute('aria-expanded', 'true');
+          }
+        });
+
+        submenu.addEventListener('keydown', (e: KeyboardEvent) => {
+          if (e.key === 'Escape') {
+            submenu.style.display = 'none';
+            (link as HTMLAnchorElement).setAttribute('aria-expanded', 'false');
+            (link as HTMLAnchorElement).focus();
+          }
+        });
+
+        const submenuLinks = submenu.querySelectorAll('a');
+        submenuLinks.forEach((submenuLink, index) => {
+          submenuLink.addEventListener('keydown', (e: KeyboardEvent) => {
+            if (e.key === 'ArrowDown') {
+              e.preventDefault();
+              const nextLink = submenuLinks[index + 1];
+              if (nextLink) {
+                (nextLink as HTMLAnchorElement).focus();
+              }
+            }
+            if (e.key === 'ArrowUp') {
+              e.preventDefault();
+              if (index === 0) {
+                (link as HTMLAnchorElement).focus();
+              } else {
+                const prevLink = submenuLinks[index - 1];
+                if (prevLink) {
+                  (prevLink as HTMLAnchorElement).focus();
+                }
+              }
+            }
+          });
+        });
+      }
+    });
   });
 </script>
