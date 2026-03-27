@@ -1,0 +1,30 @@
+---
+import type { SiteSettings } from '../lib/types';
+
+interface Props {
+  settings: SiteSettings;
+}
+
+const { settings } = Astro.props;
+---
+
+<header role="banner">
+  <div id="site-branding">
+    <h1>
+      <a href="/">{settings.churchName}</a>
+    </h1>
+    {settings.headerImage && (
+      <img 
+        src={settings.headerImage} 
+        alt="" 
+        class="header-image"
+      />
+    )}
+  </div>
+  <div class="address-bar">
+    <address>{settings.address}</address>
+    {settings.diocesanLink && (
+      <a href={settings.diocesanLink}>Anglican Diocese of Toronto</a>
+    )}
+  </div>
+</header>

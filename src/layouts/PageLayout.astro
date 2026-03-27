@@ -1,0 +1,27 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import type { SiteSettings } from '../lib/types';
+
+interface Props {
+  title: string;
+  settings: SiteSettings;
+}
+
+const { title, settings } = Astro.props;
+---
+
+<BaseLayout title={title}>
+  <div class="outer">
+    <Header settings={settings} />
+    <Navigation items={settings.navigation} />
+    <div class="wrapper">
+      <div class="container">
+        <slot />
+      </div>
+    </div>
+    <Footer copyright={settings.footerCopyright} socialLinks={settings.socialLinks} />
+  </div>
+</BaseLayout>

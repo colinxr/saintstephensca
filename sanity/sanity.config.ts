@@ -1,5 +1,7 @@
-import { defineConfig } from 'sanity';
-import { structureTool } from 'sanity/structure';
+import { defineConfig } from 'sanity'
+import { structureTool } from 'sanity/structure'
+import { visionTool } from '@sanity/vision'
+import { previewPlugin } from 'sanity-plugin-preview'
 
 export default defineConfig({
   name: 'saintstephensca',
@@ -26,5 +28,8 @@ export default defineConfig({
               .child(S.documentList().title('Sidebar Blocks').filter('_type == "sidebarBlock"')),
           ]),
     }),
-  ],
-});
+    previewPlugin({
+      previewUrl: '/preview'
+    })
+  ]
+})

@@ -1,0 +1,19 @@
+---
+interface Props {
+  copyright: string;
+  socialLinks?: Array<{ platform: string; url: string }>;
+}
+
+const { copyright, socialLinks = [] } = Astro.props;
+---
+
+<footer role="contentinfo">
+  <p>&copy; {new Date().getFullYear()} {copyright}</p>
+  {socialLinks.length > 0 && (
+    <nav aria-label="Social media links">
+      {socialLinks.map(link => (
+        <a href={link.url}>{link.platform}</a>
+      ))}
+    </nav>
+  )}
+</footer>
