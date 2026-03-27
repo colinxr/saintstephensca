@@ -1,5 +1,6 @@
 ---
 import type { NavigationItem } from '../lib/types';
+import '../styles/navigation.css';
 
 interface Props {
   items: NavigationItem[];
@@ -8,19 +9,52 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<nav aria-label="Main navigation">
-  <ul>
-    {items.map(item => (
-      <li>
-        <a href={item.href}>{item.label}</a>
-        {item.children && item.children.length > 0 && (
-          <ul>
-            {item.children.map(child => (
-              <li><a href={child.href}>{child.label}</a></li>
-            ))}
-          </ul>
-        )}
-      </li>
-    ))}
+<nav role="navigation" aria-label="Main navigation">
+  <button
+    class="menu-toggle"
+    aria-expanded="false"
+    aria-controls="main-menu"
+    aria-label="Toggle navigation menu"
+  >
+    <span aria-hidden="true">Menu</span>
+  </button>
+  <ul id="main-menu" class="menu">
+    {
+      items.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            aria-haspopup={item.children && item.children.length > 0 ? 'true' : undefined}
+            aria-expanded={item.children && item.children.length > 0 ? 'false' : undefined}
+          >
+            {item.label}
+          </a>
+          {item.children && item.children.length > 0 && (
+            <ul class="submenu">
+              {item.children.map((child) => (
+                <li>
+                  <a href={child.href}>{child.label}</a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))
+    }
   </ul>
 </nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mainMenu = document.getElementById('main-menu');
+
+    if (menuToggle && mainMenu) {
+      menuToggle.addEventListener('click', () => {
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', String(!isExpanded));
+        mainMenu.classList.toggle('open');
+      });
+    }
+  });
+</script>

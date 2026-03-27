@@ -13,16 +13,26 @@
   --alert-bg-color: #fff9e6;
   --link-color: #996600;
   --link-hover: #2b2500;
-  
+
   /* Typography */
-  --font-family: "Public Sans", sans-serif;
+  --font-family: 'Public Sans', sans-serif;
   --font-size-base: 1rem;
   --line-height-base: 1.6;
-  
+
   /* Spacing */
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
   --space-lg: 2rem;
   --space-xl: 4rem;
+
+  /* Responsive Breakpoints */
+  --bp-mobile: 320px;
+  --bp-tablet: 768px;
+  --bp-desktop: 1024px;
+  --bp-wide: 1200px;
+
+  /* Layout */
+  --max-width: 1200px;
+  --sidebar-width: 300px;
 }
