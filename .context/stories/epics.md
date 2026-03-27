@@ -37,7 +37,7 @@
 - [ ] Git repository initialized with `.gitignore` for Node.js/Sanity/Astro
 - [ ] Sanity project created and configured (free tier)
 - [ ] Astro project scaffolded with required dependencies
-- [ ] Basic CI/CD pipeline configured (GitHub Actions or similar)
+- [ ] Cloudflare Pages connected to repo (automatic builds on push to main)
 - [ ] Development workflow documented (commands for local dev, build, deploy)
 - [ ] Code formatting and linting configured (ESLint, Prettier)
 
@@ -59,7 +59,7 @@
 
 ### Acceptance Criteria
 - [ ] Page schema with: title, slug, alert box (optional), body (rich text), sidebar content
-- [ ] Alert Box schema: title, content (rich text), active status, optional page association
+- [ ] Alert Box schema: title, content (rich text), show flag (no style variants)
 - [ ] Sidebar Widget schema: widget type (donation/services/custom), content per type
 - [ ] Rich Text schema with Portable Text and custom image alignment marks
 - [ ] Image schema with: alt text (required), caption, alignment option (left/right/center)
@@ -239,7 +239,7 @@
 - [ ] Cross-browser testing (Chrome, Firefox, Safari, Edge - last 2 versions)
 - [ ] Mobile device testing (iOS Safari, Chrome Android)
 - [ ] Broken link audit completed
-- [ ] SEO basics: meta titles, descriptions, OG tags, sitemap.xml, robots.txt
+- [ ] SEO basics: meta titles, descriptions, OG tags, JSON-LD structured data, sitemap.xml, robots.txt
 
 ---
 

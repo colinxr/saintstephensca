@@ -43,8 +43,8 @@ export default {
 ### SPRINT-2-002: Create Alert Box Schema
 **Estimate:** 2 hours  
 **Acceptance Criteria:**
-- [ ] Alert schema with title, content, style, active flag
-- [ ] Optional association to specific pages
+- [ ] Alert schema with title, content, show flag
+- [ ] No style variants (single visual treatment)
 
 **Implementation:**
 Create `sanity/schemas/alert.ts`:
@@ -56,14 +56,7 @@ export default {
   fields: [
     { name: 'title', title: 'Title', type: 'string' },
     { name: 'content', title: 'Content', type: 'array', of: [{ type: 'block' }] },
-    { name: 'style', title: 'Style', type: 'string', options: {
-      list: [
-        { title: 'Default', value: 'default' },
-        { title: 'Christmas', value: 'christmas' },
-        { title: 'Urgent', value: 'urgent' }
-      ]
-    }},
-    { name: 'isActive', title: 'Active', type: 'boolean', initialValue: false }
+    { name: 'show', title: 'Show', type: 'boolean', initialValue: false, description: 'Display this alert on the site' }
   ]
 }
 ```

@@ -145,13 +145,61 @@ For CLS:
 ### SPRINT-9-007: SEO Basics
 **Estimate:** 4 hours  
 **Acceptance Criteria:**
-- [ ] Meta titles and descriptions
-- [ ] OG tags for social sharing
+- [ ] Meta titles and descriptions per page
+- [ ] OG tags (og:title, og:description, og:image) auto-generated per page
+- [ ] JSON-LD structured data (Organization, WebSite, BreadcrumbList)
 - [ ] sitemap.xml generated
 - [ ] robots.txt configured
 
 **Implementation:**
-Create `src/pages/sitemap.xml.ts`:
+
+1. Create BaseLayout SEO helper (`src/lib/seo.ts`):
+```typescript
+export function generateSEO({ title, description, image, url }) {
+  const siteUrl = 'https://ststephens.ca';
+  const siteName = 'Saint Stephen-in-the-Fields';
+  
+  return {
+    title: `${title} | ${siteName}`,
+    meta: {
+      description,
+      og: {
+        title: `${title} | ${siteName}`,
+        description,
+        image: image || `${siteUrl}/og-image.jpg`,
+        url: `${siteUrl}${url}`,
+        type: 'website',
+      },
+      jsonLd: {
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: title,
+        description,
+        url: `${siteUrl}${url}`,
+      }
+    }
+  };
+}
+```
+
+2. Update BaseLayout to include SEO meta tags:
+```astro
+---
+const { seo } = Astro.props;
+---
+<head>
+  <title>{seo.title}</title>
+  <meta name="description" content={seo.meta.description} />
+  <meta property="og:title" content={seo.meta.og.title} />
+  <meta property="og:description" content={seo.meta.og.description} />
+  <meta property="og:image" content={seo.meta.og.image} />
+  <meta property="og:url" content={seo.meta.og.url} />
+  <meta property="og:type" content={seo.meta.og.type} />
+  <script type="application/ld+json" set:html={JSON.stringify(seo.meta.jsonLd)} />
+</head>
+```
+
+3. Create sitemap endpoint (`src/pages/sitemap.xml.ts`):
 ```typescript
 import type { APIRoute } from 'astro';
 import { sanityClient } from '../lib/sanity';
@@ -172,7 +220,7 @@ export const GET: APIRoute = async () => {
 };
 ```
 
-Create `public/robots.txt`:
+4. Create `public/robots.txt`:
 ```
 User-agent: *
 Allow: /

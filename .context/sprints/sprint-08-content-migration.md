@@ -8,6 +8,26 @@
 
 ## Tickets
 
+### SPRINT-8-000: Sitemap Confirmation
+**Estimate:** 4 hours  
+**Acceptance Criteria:**
+- [ ] Final page list confirmed (no pages to add or remove)
+- [ ] Navigation structure (dropdowns) confirmed
+- [ ] URL structure documented
+- [ ] Any page deletions or URL changes noted for redirects
+
+**Implementation:**
+Review existing TextPattern site and confirm:
+1. List all current pages
+2. Confirm which pages are needed in new site
+3. Document dropdown menu structure
+4. Note any URL changes needed
+5. Get stakeholder approval before proceeding with migration
+
+**IMPORTANT:** This step prevents building pages that will be deleted. Do not skip.
+
+---
+
 ### SPRINT-8-001: Content Audit
 **Estimate:** 6 hours  
 **Acceptance Criteria:**
@@ -146,6 +166,7 @@ const settings = await getSiteSettings();
 
 | Ticket | Description | Status |
 |--------|-------------|--------|
+| SPRINT-8-000 | Sitemap Confirmation | ☐ |
 | SPRINT-8-001 | Content Audit | ☐ |
 | SPRINT-8-002 | Export Text | ☐ |
 | SPRINT-8-003 | Export Images | ☐ |

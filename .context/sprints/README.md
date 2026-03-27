@@ -10,15 +10,15 @@
 
 | Sprint | Duration | Focus | Key Deliverables |
 |--------|----------|-------|------------------|
-| [Sprint 1](./sprint-01-foundation.md) | 2 weeks | Foundation | Repo, Sanity project, Astro setup, CI/CD |
+| [Sprint 1](./sprint-01-foundation.md) | 2 weeks | Foundation | Repo, Sanity project, Astro setup, Cloudflare CI/CD |
 | [Sprint 2](./sprint-02-schemas-design-system.md) | 2 weeks | Schema Design + Design System | CMS schemas (draft), CSS variables, typography |
 | [Sprint 3](./sprint-03-cms-refinement-layout.md) | 2 weeks | CMS Refinement + Layout | Full schemas, preview, page shell, header/footer |
 | [Sprint 4](./sprint-04-navigation-structure.md) | 2 weeks | Navigation & Structure | Dropdown nav, two-column layout, responsive |
 | [Sprint 5](./sprint-05-alert-article-components.md) | 2 weeks | Content Components | Alert box, article, rich text, image alignment |
 | [Sprint 6](./sprint-06-sidebar-preview.md) | 2 weeks | Sidebar & Preview | Sidebar widgets, preview system |
 | [Sprint 7](./sprint-07-accessibility.md) | 2 weeks | Accessibility | WCAG 2.1 AA compliance, keyboard nav |
-| [Sprint 8](./sprint-08-content-migration.md) | 2 weeks | Content Migration | All content migrated from TextPattern |
-| [Sprint 9](./sprint-09-performance-qa.md) | 2 weeks | Performance & QA | Lighthouse 90+, cross-browser testing |
+| [Sprint 8](./sprint-08-content-migration.md) | 2 weeks | Content Migration | Sitemap confirmation, all content migrated |
+| [Sprint 9](./sprint-09-performance-qa.md) | 2 weeks | Performance & QA | Lighthouse 90+, OG tags, JSON-LD, cross-browser |
 | [Sprint 10](./sprint-10-launch-training.md) | 2 weeks | Launch | Production deploy, training, docs |
 
 **Total Estimated Duration:** 20 weeks (~5 months)
@@ -48,14 +48,14 @@
 
 | Sprint | Tickets |
 |--------|---------|
-| Sprint 1 | 5 |
+| Sprint 1 | 4 |
 | Sprint 2 | 7 |
 | Sprint 3 | 6 |
 | Sprint 4 | 6 |
 | Sprint 5 | 6 |
 | Sprint 6 | 6 |
 | Sprint 7 | 7 |
-| Sprint 8 | 6 |
+| Sprint 8 | 7 |
 | Sprint 9 | 8 |
 | Sprint 10 | 7 |
 
