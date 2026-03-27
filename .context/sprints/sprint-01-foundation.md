@@ -68,43 +68,7 @@ npm run dev
 
 ---
 
-### SPRINT-1-004: Configure CI/CD Pipeline
-**Estimate:** 4 hours  
-**Acceptance Criteria:**
-- [ ] GitHub Actions workflow for Astro build
-- [ ] Deploys to Cloudflare Pages on main push
-- [ ] Preview deployments for PRs
-
-**Implementation:**
-Create `.github/workflows/deploy.yml`:
-```yaml
-name: Deploy
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - run: npm install
-      - run: npm run build
-      - uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: saintstephensca
-          directory: dist
-```
-
----
-
-### SPRINT-1-005: Set Up Code Quality Tools
+### SPRINT-1-004: Set Up Code Quality Tools
 **Estimate:** 2 hours  
 **Acceptance Criteria:**
 - [ ] ESLint configured for Astro/TypeScript
@@ -132,11 +96,10 @@ npx eslint --init
 | SPRINT-1-001 | Git Repository | ☐ |
 | SPRINT-1-002 | Sanity Project | ☐ |
 | SPRINT-1-003 | Astro Project | ☐ |
-| SPRINT-1-004 | CI/CD Pipeline | ☐ |
-| SPRINT-1-005 | Code Quality | ☐ |
+| SPRINT-1-004 | Code Quality | ☐ |
 
 **Definition of Done:**
 - All tickets completed
 - Local dev environment works
-- Deployment pipeline green
+- Cloudflare Pages connected to repo (automatic builds on push to main)
 - Code lints without errors
