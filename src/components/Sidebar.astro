@@ -1,0 +1,98 @@
+---
+import type { SiteSettings } from '../lib/types';
+import type { PortableTextBlock } from 'sanity';
+import { renderPortableText } from '../lib/portable-text';
+
+interface SidebarWidget {
+  widgetType: 'serviceSchedule' | 'donation' | 'social' | 'badge';
+  title?: string;
+  content?: PortableTextBlock[];
+  linkText?: string;
+  linkUrl?: string;
+}
+
+interface Props {
+  widgets?: SidebarWidget[];
+  settings: SiteSettings;
+}
+
+const { widgets = [], settings } = Astro.props;
+const displayWidgets = widgets ?? [];
+
+function renderWidgetContent(widget: SidebarWidget): string {
+  if (!widget.content) return '';
+  return renderPortableText(widget.content);
+}
+---
+
+<aside role="complementary" class="sidebar">
+  {
+    displayWidgets.map((widget) => (
+      <div class={`widget widget-${widget.widgetType}`}>
+        {widget.title && <h3 class="widget-title">{widget.title}</h3>}
+        <div class="widget-content" set:html={renderWidgetContent(widget)} />
+        {widget.linkText && widget.linkUrl && (
+          <a href={widget.linkUrl} class="widget-link">
+            {widget.linkText}
+          </a>
+        )}
+      </div>
+    ))
+  }
+
+  {
+    displayWidgets.length === 0 && settings.donationLink && (
+      <div class="widget widget-donation">
+        <h3 class="widget-title">Support Our Mission</h3>
+        <p>Your generosity makes our work possible.</p>
+        <a href={settings.donationLink} class="widget-link">
+          Donate Now
+        </a>
+      </div>
+    )
+  }
+</aside>
+
+<style>
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .widget {
+    padding: var(--space-md);
+    background: var(--bg-alt);
+    border-radius: 4px;
+  }
+
+  .widget-title {
+    font-size: 1.125rem;
+    margin-bottom: var(--space-sm);
+  }
+
+  .widget-content :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .widget-link {
+    display: inline-block;
+    margin-top: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--accent-color);
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+
+  .widget-link:hover {
+    background: var(--accent-dark);
+    color: var(--text-color);
+  }
+
+  .widget-link:focus {
+    outline: 2px solid var(--link-color);
+    outline-offset: 2px;
+  }
+</style>

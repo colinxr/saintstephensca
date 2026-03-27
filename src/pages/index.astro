@@ -1,19 +1,76 @@
 ---
+import PageLayout from '../layouts/PageLayout.astro';
+import AlertBox from '../components/AlertBox.astro';
+import Article from '../components/Article.astro';
+import Sidebar from '../components/Sidebar.astro';
+import { getSiteSettings, getHomePage } from '../lib/sanity';
+import { renderPortableText } from '../lib/portable-text';
+import '../styles/design-tokens.css';
+import '../styles/typography.css';
+import '../styles/content.css';
 
+const settings = await getSiteSettings();
+const page = await getHomePage();
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Saint Stephen-in-the-Fields</title>
-  </head>
-  <body>
-    <main>
-      <h1>Saint Stephen-in-the-Fields Anglican Church</h1>
-      <p>Kensington Market, Toronto</p>
-    </main>
-  </body>
-</html>
+{
+  settings && page && (
+    <PageLayout title={settings.churchName} settings={settings}>
+      <div class="page-content">
+        <div class="main-wrapper">
+          {page.alertBox?.show && <AlertBox alert={page.alertBox} pageSlug={page.slug?.current} />}
+
+          <Article title={page.title}>
+            <Fragment set:html={renderPortableText(page.mainContent)} />
+          </Article>
+        </div>
+
+        <Sidebar widgets={page.sidebarWidgets} settings={settings} />
+      </div>
+    </PageLayout>
+  )
+}
+
+{
+  (!settings || !page) && (
+    <PageLayout
+      title="Welcome"
+      settings={{
+        churchName: 'Saint Stephen-in-the-Fields',
+        address: 'Kensington Market, Toronto',
+        footerCopyright: '© 2026 Saint Stephen-in-the-Fields',
+        socialLinks: [],
+        navigation: [],
+      }}
+    >
+      <div class="page-content">
+        <div class="main-wrapper">
+          <Article title="Welcome">
+            <p>Welcome to our church website. Content coming soon.</p>
+          </Article>
+        </div>
+      </div>
+    </PageLayout>
+  )
+}
+
+<style>
+  .page-content {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: var(--space-xl);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .main-wrapper {
+    min-width: 0;
+  }
+
+  @media (max-width: 900px) {
+    .page-content {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

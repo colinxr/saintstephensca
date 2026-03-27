@@ -1,0 +1,131 @@
+nav {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  background-color: var(--bg-color);
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--link-color);
+}
+
+.menu-toggle:hover,
+.menu-toggle:focus {
+  background-color: var(--bg-alt);
+}
+
+.menu-toggle:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: -2px;
+}
+
+nav ul.menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  position: relative;
+}
+
+nav a {
+  display: block;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: var(--link-color);
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+nav a:hover,
+nav a:focus {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+nav a:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: -2px;
+}
+
+ul.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  z-index: 100;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav li:hover > ul.submenu,
+nav li:focus-within > ul.submenu {
+  display: block;
+}
+
+ul.submenu li {
+  border-bottom: 1px solid var(--border-color);
+}
+
+ul.submenu li:last-child {
+  border-bottom: none;
+}
+
+ul.submenu a {
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+}
+
+ul.submenu a:hover,
+ul.submenu a:focus {
+  background-color: var(--bg-alt);
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  nav ul.menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  nav ul.menu.open {
+    display: flex;
+  }
+
+  nav li {
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  nav li:last-child {
+    border-bottom: none;
+  }
+
+  ul.submenu {
+    position: static;
+    box-shadow: none;
+    border: none;
+    background-color: var(--bg-alt);
+  }
+
+  ul.submenu a {
+    padding-left: 2rem;
+  }
+}

@@ -1,0 +1,36 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<article class="article">
+  <header class="article-header">
+    <h1>{title}</h1>
+  </header>
+  <div class="article-body">
+    <slot />
+  </div>
+</article>
+
+<style>
+  .article {
+    max-width: 100%;
+  }
+
+  .article-header {
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .article-header h1 {
+    margin-bottom: 0;
+  }
+
+  .article-body {
+    line-height: var(--line-height-base);
+  }
+</style>

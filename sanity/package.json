@@ -7,10 +7,12 @@
     "dev": "sanity dev",
     "build": "sanity build",
     "deploy": "sanity deploy",
-    "start": "sanity start"
+    "start": "sanity start",
+    "migrate": "node migrations/01-migrate-content.mjs"
   },
   "dependencies": {
     "@sanity/vision": "^3.0.0",
+    "dotenv": "^17.3.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "sanity": "^5.18.0",
