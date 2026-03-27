@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en-CA">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Component Library | St. Stephen-in-the-Fields</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="prototype.css" />
+    <style>
+      .components-page {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 2rem;
+        font-family: var(--public-sans);
+      }
+      h1 {
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin: 0 0 2rem 0;
+        padding-bottom: 1rem;
+        border-bottom: 4px solid var(--accent-color);
+      }
+      h2 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin: 2rem 0 0.5rem 0;
+        color: var(--text-color);
+      }
+      .component-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #888;
+        margin-bottom: 0.25rem;
+      }
+      .component-desc {
+        font-size: 0.9rem;
+        color: var(--text-color-light);
+        margin-bottom: 1rem;
+      }
+      .component-preview {
+        background: #fff;
+        border: 1px solid var(--border-color);
+        padding: 1rem;
+        margin-bottom: 1rem;
+      }
+      .component-preview-header {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #999;
+        margin-bottom: 0.75rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid #eee;
+      }
+      hr {
+        border: none;
+        border-top: 1px solid var(--border-color);
+        margin: 2rem 0;
+      }
+      code {
+        background: #f5f5f5;
+        padding: 0.15rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.85em;
+        font-family: monospace;
+      }
+      .clearfix::after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="components-page">
+      <h1>Component Library</h1>
+
+      <div class="component-label">Header</div>
+      <h2>header</h2>
+      <p class="component-desc">Site branding with church name. Typically used at the top of every page.</p>
+      <div class="component-preview">
+        <div class="component-preview-header">Preview</div>
+        <header role="banner">
+          <div id="site-branding">
+            <h1>
+              <a rel="home" href="/">Church of Saint Stephen-in-the-Fields</a>
+            </h1>
+          </div>
+        </header>
+      </div>
+
+      <div class="component-label">Utility Bar</div>
+      <h2>.address-bar</h2>
+      <p class="component-desc">Dark utility bar displaying address and diocese link. Place below header, above navigation.</p>
+      <div class="component-preview">
+        <div class="component-preview-header">Preview</div>
+        <div class="address-bar">
+          Saint Stephen-in-the-Fields | 103 Bellevue Ave, Toronto, ON M5T 2N8 |
+          <a href="#" class="diocese-link">Anglican Diocese of Toronto</a>
+        </div>
+      </div>
+
+      <div class="component-label">Navigation</div>
+      <h2>nav</h2>
+      <p class="component-desc">Primary site navigation menu. Use <code>class="active"</code> on the current page's list item.</p>
+      <div class="component-preview">
+        <div class="component-preview-header">Preview</div>
+        <nav role="navigation">
+          <ul id="menu">
+            <li class="active"><a href="prototype.html">Home</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="#">Worship</a></li>
+            <li><a href="#">Outreach</a></li>
+            <li><a href="#">Arts</a></li>
+            <li><a href="#">History</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="component-label">Widget</div>
+      <h2>.service-schedule</h2>
+      <p class="component-desc">Sidebar widget for weekly service schedule. Use within an <code>aside</code> or <code>.widget</code> container.</p>
+      <div class="component-preview">
+        <div class="component-preview-header">Preview</div>
+        <section id="next-services" class="widget service-schedule">
+          <h3>Weekly Services</h3>
+          <ul class="schedule-list">
+            <li><strong>Mon - Wed:</strong> Evening Prayer, 4:30pm</li>
+            <li>
+              <strong>Tuesdays:</strong> Meditation &amp; Bible Study, 7:30pm
+              (Zoom)
+            </li>
+            <li><strong>Wednesdays:</strong> Said Mass, 12 noon</li>
+          </ul>
+        </section>
+      </div>
+
+      <div class="component-label">Alert</div>
+      <h2>.alert-box</h2>
+      <p class="component-desc">Highlighted alert box for announcements, events, or service changes. Supports modifier classes like <code>.christmas</code> for themed styling.</p>
+      <div class="component-preview">
+        <div class="component-preview-header">Preview</div>
+        <section class="alert-box christmas">
+          <h2>Christmas Services</h2>
+          <p>
+            <strong>December 24, 9 pm:</strong> Christmas Eve Mass<br />
+            <strong>December 25, 10:30 am:</strong> Christmas Day Service
+          </p>
+        </section>
+      </div>
+
+      <div class="component-label">Content</div>
+      <h2>.welcome</h2>
+      <p class="component-desc">Main welcome content area for homepage. Includes optional <code>.featured-image</code> floated right.</p>
+      <div class="component-preview">
+        <div class="component-preview-header">Preview</div>
+        <article class="welcome clearfix">
+          <h2>Welcome to St. Stephen's</h2>
+          <p>
+            We are an inclusive and affirming Anglican community in the
+            heart of the city, where we strive to live out God's mission of
+            compassion and justice for all people, and for all of creation.
+          </p>
+
+          <img
+            src="119t.jpg"
+            alt="Beggar Jesus sculpture"
+            class="featured-image"
+          />
+
+          <p>
+            We are committed to being a community of solidarity with those
+            who have been pushed to the margins of our society, and to the
+            task of building a better world.
+          </p>
+        </article>
+      </div>
+
+      <div class="component-label">Content</div>
+      <h2>.site-previews</h2>
+      <p class="component-desc">Three-column grid for program highlights. Each <code>.preview-block</code> contains a title, description, and link.</p>
+      <div class="component-preview">
+        <div class="component-preview-header">Preview</div>
+        <section class="site-previews">
+          <div class="preview-block">
+            <h3>Weekend Breakfast Programme</h3>
+            <p>
+              Hot meals served every Saturday and Sunday from 7:00am to
+              8:30am. No questions asked. All are welcome.
+            </p>
+            <a href="#" class="preview-link">Learn more →</a>
+          </div>
+          <div class="preview-block">
+            <h3>Safe Space Drop-In</h3>
+            <p>
+              A welcoming environment for community members to rest,
+              connect, and access support services.
+            </p>
+            <a href="#" class="preview-link">Learn more →</a>
+          </div>
+          <div class="preview-block">
+            <h3>Arts & Music</h3>
+            <p>
+              We host readings, concerts, and exhibitions throughout the
+              year. The church is a space for creative expression.
+            </p>
+            <a href="#" class="preview-link">Learn more →</a>
+          </div>
+        </section>
+      </div>
+
+      <hr />
+
+      <div class="component-label">Combined</div>
+      <h2>Complete Header Section</h2>
+      <p class="component-desc">Standard header assembly: branding, address bar, and navigation stacked together.</p>
+      <div class="component-preview">
+        <div class="component-preview-header">Preview</div>
+        <header role="banner">
+          <div id="site-branding">
+            <h1>
+              <a rel="home" href="/">Church of Saint Stephen-in-the-Fields</a>
+            </h1>
+          </div>
+        </header>
+
+        <div class="address-bar">
+          Saint Stephen-in-the-Fields | 103 Bellevue Ave, Toronto, ON M5T 2N8 |
+          <a href="#" class="diocese-link">Anglican Diocese of Toronto</a>
+        </div>
+
+        <nav role="navigation">
+          <ul id="menu">
+            <li class="active"><a href="prototype.html">Home</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="#">Worship</a></li>
+            <li><a href="#">Outreach</a></li>
+            <li><a href="#">Arts</a></li>
+            <li><a href="#">History</a></li>
+          </ul>
+        </nav>
+      </div>
+
+    </div>
+  </body>
+</html>

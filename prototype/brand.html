@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en-CA">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brand Guidelines | St. Stephen-in-the-Fields</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="prototype.css" />
+    <style>
+      .brand-page {
+        background: #f5f5f5;
+        padding: 2rem;
+        font-family: var(--public-sans);
+      }
+      .brand-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding: 2rem;
+        background: var(--text-color);
+        color: var(--bg-color);
+        border-radius: 8px;
+      }
+      .brand-header h1 {
+        margin: 0 0 0.5rem 0;
+        font-size: 2.5rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+      }
+      .brand-header p {
+        margin: 0;
+        opacity: 0.8;
+      }
+      .guideline-section {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+        overflow: hidden;
+      }
+      .section-header {
+        background: var(--text-color);
+        color: #fff;
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid #ddd;
+      }
+      .section-header h2 {
+        margin: 0;
+        font-size: 1.25rem;
+      }
+      .section-content {
+        padding: 2rem;
+      }
+      .color-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+      }
+      .color-swatch {
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid #eee;
+      }
+      .color-preview {
+        height: 80px;
+      }
+      .color-info {
+        padding: 1rem;
+        background: #fafafa;
+      }
+      .color-name {
+        font-weight: 700;
+        font-size: 0.9rem;
+        margin-bottom: 0.25rem;
+      }
+      .color-hex {
+        font-family: monospace;
+        color: #666;
+        font-size: 0.85rem;
+      }
+      .font-preview {
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        background: var(--bg-color);
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+      }
+      .font-name {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: #999;
+        margin-bottom: 0.5rem;
+      }
+      .font-sample {
+        font-family: var(--public-sans);
+        color: var(--text-color);
+      }
+      .font-sample.light { font-weight: 400; }
+      .font-sample.regular { font-weight: 700; }
+      .font-sample.bold { font-weight: 800; letter-spacing: -0.04em; }
+      .font-sample.size-lg { font-size: 2.4rem; line-height: 1.05; }
+      .font-sample.size-md { font-size: 1.6rem; line-height: 1.1; }
+      .font-sample.size-sm { font-size: 1rem; line-height: 1.5; }
+      .type-scale {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .usage-note {
+        margin-top: 2rem;
+        padding: 1rem;
+        background: var(--bg-alt);
+        border-radius: 8px;
+        border-left: 4px solid var(--accent-color);
+      }
+      .usage-note h4 {
+        margin: 0 0 0.5rem 0;
+        font-size: 0.9rem;
+      }
+      .usage-note p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: var(--text-color-light);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="brand-page">
+      <div class="brand-header">
+        <h1>Brand Guidelines</h1>
+        <p>Church of Saint Stephen-in-the-Fields</p>
+      </div>
+
+      <!-- Typography -->
+      <div class="guideline-section">
+        <div class="section-header">
+          <h2>Typography</h2>
+        </div>
+        <div class="section-content">
+          <div class="font-preview">
+            <div class="font-name">Primary Typeface</div>
+            <div class="font-sample regular size-lg">Public Sans</div>
+            <div class="font-name" style="margin-top: 1rem;">Google Fonts</div>
+            <code style="background: #f0f0f0; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.85rem;">
+              https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&display=swap
+            </code>
+          </div>
+
+          <div class="type-scale">
+            <div class="font-preview">
+              <div class="font-name">Heading 1 (2.5rem)</div>
+              <div class="font-sample bold size-lg">Church of Saint Stephen-in-the-Fields</div>
+            </div>
+            <div class="font-preview">
+              <div class="font-name">Heading 2 Welcome (2.4rem)</div>
+              <div class="font-sample bold" style="font-size: 2.4rem; line-height: 1.05;">Welcome to St. Stephen's</div>
+            </div>
+            <div class="font-preview">
+              <div class="font-name">Alert Box Title (1.6rem)</div>
+              <div class="font-sample regular size-md">Christmas Services</div>
+            </div>
+            <div class="font-preview">
+              <div class="font-name">Body Text (1.1rem)</div>
+              <div class="font-sample light size-sm">We are an inclusive and affirming Anglican community in the heart of the city.</div>
+            </div>
+          </div>
+
+          <div class="usage-note">
+            <h4>Usage Guidelines</h4>
+            <p>Use Public Sans for all text. Headings use 800 weight with tight letter spacing. Body text uses 400 weight with 1.5 line height.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Colors -->
+      <div class="guideline-section">
+        <div class="section-header">
+          <h2>Color Palette</h2>
+        </div>
+        <div class="section-content">
+          <h3 style="margin: 0 0 1rem 0; font-size: 1rem;">Core Colors</h3>
+          <div class="color-grid">
+            <div class="color-swatch">
+              <div class="color-preview" style="background: var(--text-color);"></div>
+              <div class="color-info">
+                <div class="color-name">Text Color</div>
+                <div class="color-hex">#2b2500</div>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-preview" style="background: var(--text-color-light);"></div>
+              <div class="color-info">
+                <div class="color-name">Text Light</div>
+                <div class="color-hex">#5c4d1a</div>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-preview" style="background: var(--bg-color);"></div>
+              <div class="color-info">
+                <div class="color-name">Background</div>
+                <div class="color-hex">#fffef5</div>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-preview" style="background: var(--bg-alt);"></div>
+              <div class="color-info">
+                <div class="color-name">Background Alt</div>
+                <div class="color-hex">#fff9e6</div>
+              </div>
+            </div>
+          </div>
+
+          <h3 style="margin: 2rem 0 1rem 0; font-size: 1rem;">Accent Colors</h3>
+          <div class="color-grid">
+            <div class="color-swatch">
+              <div class="color-preview" style="background: var(--accent-color);"></div>
+              <div class="color-info">
+                <div class="color-name">Accent</div>
+                <div class="color-hex">#f5c518</div>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-preview" style="background: var(--accent-light);"></div>
+              <div class="color-info">
+                <div class="color-name">Accent Light</div>
+                <div class="color-hex">#ffdd55</div>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-preview" style="background: var(--accent-dark);"></div>
+              <div class="color-info">
+                <div class="color-name">Accent Dark</div>
+                <div class="color-hex">#d4a600</div>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-preview" style="background: var(--accent-muted);"></div>
+              <div class="color-info">
+                <div class="color-name">Accent Muted</div>
+                <div class="color-hex">#f5e6b3</div>
+              </div>
+            </div>
+          </div>
+
+          <h3 style="margin: 2rem 0 1rem 0; font-size: 1rem;">Utility Colors</h3>
+          <div class="color-grid">
+            <div class="color-swatch">
+              <div class="color-preview" style="background: var(--border-color);"></div>
+              <div class="color-info">
+                <div class="color-name">Border Color</div>
+                <div class="color-hex">#e8dba8</div>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-preview" style="background: var(--border-color-dark);"></div>
+              <div class="color-info">
+                <div class="color-name">Border Dark</div>
+                <div class="color-hex">#d4c192</div>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-preview" style="background: var(--alert-bg-color);"></div>
+              <div class="color-info">
+                <div class="color-name">Alert Background</div>
+                <div class="color-hex">#fff9e6</div>
+              </div>
+            </div>
+            <div class="color-swatch">
+              <div class="color-preview" style="background: var(--link-color);"></div>
+              <div class="color-info">
+                <div class="color-name">Link Color</div>
+                <div class="color-hex">#996600</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="usage-note">
+            <h4>Usage Guidelines</h4>
+            <p>Accent color (#f5c518) is the primary brand color used for borders, active states, and highlights. Text color (#2b2500) provides high contrast against the warm cream background (#fffef5).</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>

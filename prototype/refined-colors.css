@@ -1,0 +1,37 @@
+/* ==========================================================================
+   REFINED MONOCHROMATIC PALETTE (Cream & Yellow Hues)
+   ========================================================================== */
+
+:root {
+  /* Core Palette - Hue: 45° (Warm Golden Yellow) */
+  --color-text: #2b2500;           /* Deep brown-gold for text */
+  --color-text-light: #5c4d1a;     /* Lighter text for secondary */
+  --color-bg: #fffef5;             /* Warm off-white */
+  --color-bg-alt: #fff9e6;         /* Slightly darker for contrast */
+  --color-bg-box: #ffffff;         /* Pure white for cards/boxes */
+
+  /* Accent Spectrum */
+  --color-accent: #f5c518;         /* Rich golden yellow (primary) */
+  --color-accent-light: #ffdd55;   /* Lighter yellow (hover) */
+  --color-accent-dark: #d4a600;    /* Darker gold (active/borders) */
+  --color-accent-muted: #f5e6b3;   /* Very pale for subtle highlights */
+
+  /* Functional Colors */
+  --color-border: #e8dba8;         /* Soft gold-tan */
+  --color-border-dark: #d4c192;    /* Darker border */
+  --color-focus: #f5c518;          /* Focus ring */
+
+  /* Typography & Links */
+  --color-link: #996600;           /* Bronze for links */
+  --color-link-hover: #2b2500;     /* Dark text on hover */
+
+  /* Alerts & Messages */
+  --color-alert-bg: #fff9e6;       /* Light cream */
+  --color-alert-border: #f5c518;
+
+  /* Button Defaults */
+  --btn-bg: #f5c518;
+  --btn-bg-hover: #ffdd55;
+  --btn-text: #2b2500;
+  --btn-border: #d4a600;
+}
