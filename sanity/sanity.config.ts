@@ -1,5 +1,6 @@
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
+import { schemaTypes } from './schemas';
 
 export default defineConfig({
   name: 'saintstephensca',
@@ -24,4 +25,5 @@ export default defineConfig({
           ]),
     }),
   ],
+  schema: { types: schemaTypes },
 });
