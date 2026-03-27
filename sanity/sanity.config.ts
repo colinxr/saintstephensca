@@ -2,8 +2,12 @@ import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import { previewPlugin } from 'sanity-plugin-preview'
+import { schemaTypes } from './schemas'
 
 export default defineConfig({
+  schema: {
+    types: schemaTypes,
+  },
   name: 'saintstephensca',
   title: 'Saint Stephen-in-the-Fields',
   projectId: process.env.SANITY_PROJECT_ID,

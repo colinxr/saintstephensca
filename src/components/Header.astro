@@ -15,8 +15,8 @@ const { settings } = Astro.props;
     </h1>
     {settings.headerImage && (
       <img 
-        src={settings.headerImage} 
-        alt="" 
+        src={settings.headerImage.asset._ref ? `https://cdn.sanity.io/images/${import.meta.env.SANITY_PROJECT_ID}/${import.meta.env.SANITY_DATASET || 'production'}/${settings.headerImage.asset._ref.replace('image-', '').replace('-jpg', '.jpg').replace('-png', '.png').replace('-webp', '.webp')}` : ''} 
+        alt="Saint Stephen-in-the-Fields church building"
         class="header-image"
       />
     )}
