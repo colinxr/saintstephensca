@@ -13,6 +13,13 @@ export default {
     }},
     { name: 'title', title: 'Title', type: 'string' },
     { name: 'content', title: 'Content', type: 'array', of: [{ type: 'block' }] },
+    { name: 'socialLinks', title: 'Social Links', type: 'array', hidden: true, of: [{
+      type: 'object',
+      fields: [
+        { name: 'platform', title: 'Platform', type: 'string' },
+        { name: 'url', title: 'URL', type: 'url' }
+      ]
+    }]},
     { name: 'linkText', title: 'Link Text', type: 'string' },
     { name: 'linkUrl', title: 'Link URL', type: 'url' }
   ]

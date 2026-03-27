@@ -8,6 +8,15 @@ export const sanityClient = createClient({
   apiVersion: '2024-01-01',
 });
 
+const previewClient = createClient({
+  projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID,
+  dataset: import.meta.env.PUBLIC_SANITY_DATASET,
+  token: import.meta.env.SANITY_API_TOKEN,
+  perspective: 'previewDrafts',
+  useCdn: false,
+  apiVersion: '2024-01-01',
+});
+
 const builder = imageUrlBuilder(sanityClient);
 
 export function urlFor(source: { asset: { _ref: string } }) {
@@ -57,4 +66,31 @@ export async function getPageBySlug(slug: string) {
 
 export async function getHomePage() {
   return getPageBySlug('home');
+}
+
+export async function getPreviewPage(slug: string) {
+  return previewClient.fetch(
+    `
+    *[_type == "page" && slug.current == $slug][0] {
+      _id,
+      title,
+      slug,
+      "alertBox": alertBox->{
+        title,
+        content,
+        style,
+        show
+      },
+      mainContent,
+      sidebarWidgets[]->{
+        widgetType,
+        title,
+        content,
+        linkText,
+        linkUrl
+      }
+    }
+  `,
+    { slug }
+  );
 }
