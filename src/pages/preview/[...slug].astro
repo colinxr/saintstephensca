@@ -1,0 +1,89 @@
+---
+export const prerender = false;
+
+import PageLayout from '../../layouts/PageLayout.astro';
+import AlertBox from '../../components/AlertBox.astro';
+import Article from '../../components/Article.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import { getSiteSettings, getPreviewPage } from '../../lib/sanity';
+import { renderPortableText } from '../../lib/portable-text';
+import '../../styles/typography.css';
+import '../../styles/content.css';
+
+const settings = await getSiteSettings();
+const page = await getPreviewPage(Astro.params.slug);
+
+if (!page) {
+  return Astro.redirect('/404');
+}
+---
+
+<PageLayout title={page.title} settings={settings}>
+  <div class="preview-banner" role="status" aria-live="polite">
+    <span>Preview Mode - Content not published</span>
+    <a href={`/studio/page/${page._id}`} class="preview-edit-link">Edit in Sanity</a>
+  </div>
+
+  <div class="page-content">
+    <div class="main-wrapper">
+      {page.alertBox?.show && <AlertBox alert={page.alertBox} pageSlug={page.slug?.current} />}
+
+      <Article title={page.title}>
+        <Fragment set:html={renderPortableText(page.mainContent)} />
+      </Article>
+    </div>
+
+    <Sidebar widgets={page.sidebarWidgets} settings={settings} />
+  </div>
+</PageLayout>
+
+<style>
+  .preview-banner {
+    background: var(--accent-muted);
+    border-bottom: 2px solid var(--accent-dark);
+    padding: var(--space-sm) var(--space-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    font-weight: bold;
+  }
+
+  .preview-edit-link {
+    background: var(--accent-dark);
+    color: white;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: 4px;
+    text-decoration: none;
+  }
+
+  .preview-edit-link:hover,
+  .preview-edit-link:focus {
+    opacity: 0.9;
+    text-decoration: underline;
+  }
+
+  .preview-edit-link:focus {
+    outline: 2px solid var(--link-color);
+    outline-offset: 2px;
+  }
+
+  .page-content {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: var(--space-xl);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .main-wrapper {
+    min-width: 0;
+  }
+
+  @media (max-width: 900px) {
+    .page-content {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
