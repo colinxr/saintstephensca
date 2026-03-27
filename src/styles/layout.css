@@ -1,0 +1,37 @@
+.outer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  flex: 1;
+  padding: var(--space-lg) 0;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--space-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+main {
+  min-width: 0;
+}
+
+aside {
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  aside {
+    order: 2;
+  }
+}
