@@ -1,7 +1,7 @@
 # Session 03 - Sprint 5: Alert Box & Article Components
 
 **Date:** March 27, 2026  
-**Duration:** ~1 hour
+**Duration:** ~1.5 hours
 
 ---
 
@@ -34,7 +34,9 @@ Implementing Sprint 5: Alert Box & Article Components. Each ticket is its own co
 | 0aa2adf | SPRINT-5-004: Add aligned image styles for left, right, and center alignment |
 | 7d282c7 | SPRINT-5-005: Create Sidebar component with widget support                   |
 | e0318c8 | SPRINT-5-006: Connect CMS data to pages with Sanity integration              |
-| bae4b18 | docs: add session 03 documentation                                           |
+| 592aaaf | docs: add session 03 documentation                                           |
+| 6c392e0 | feat: add migration script for prototype content                             |
+| 56ffed8 | fix: handle null sidebarWidgets in Sidebar component                         |
 
 ---
 
@@ -63,28 +65,45 @@ Implementing Sprint 5: Alert Box & Article Components. Each ticket is its own co
 
 - `sanity/schemas/alert.ts` - Added `style` field (default, christmas, urgent)
 
+### Migration
+
+- `sanity/migrations/01-migrate-content.mjs` - Migration script for prototype content
+
 ### Dependencies
 
 - Added `@sanity/client` and `@sanity/image-url` packages
+- Added `dotenv` to sanity package
 
 ---
 
-## Test Data
+## Migration Script
 
-Test data should be created in Sanity Studio:
+**Location:** `sanity/migrations/01-migrate-content.mjs`
 
-- Sample alert with content
-- Sample page with main content and sidebar widgets
-- Sample sidebar widgets (donation, service schedule)
+**Usage:**
 
-To create test data:
+```bash
+# Add token to sanity/.env
+SANITY_TOKEN=your_token_here
 
-1. Start Sanity Studio: `cd sanity && npm run dev`
-2. Navigate to http://localhost:3333
-3. Create Site Settings document first
-4. Create Alert documents
-5. Create Sidebar Widget documents
-6. Create Page document with slug "home"
+# Run migration
+cd sanity && npm run migrate
+```
+
+**Creates:**
+
+- Site Settings (church name, address, navigation, social links)
+- Christmas Alert (visible)
+- Sidebar Widgets (weekly services, donation, social)
+- Home Page and Contact Page
+
+---
+
+## Bug Fixes
+
+### Sidebar null widgets (56ffed8)
+
+Fixed error when `page.sidebarWidgets` is `null` from Sanity. Changed from default parameter to explicit null coalescing.
 
 ---
 

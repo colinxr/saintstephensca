@@ -17,6 +17,7 @@ interface Props {
 }
 
 const { widgets = [], settings } = Astro.props;
+const displayWidgets = widgets ?? [];
 
 function renderWidgetContent(widget: SidebarWidget): string {
   if (!widget.content) return '';
@@ -26,7 +27,7 @@ function renderWidgetContent(widget: SidebarWidget): string {
 
 <aside role="complementary" class="sidebar">
   {
-    widgets.map((widget) => (
+    displayWidgets.map((widget) => (
       <div class={`widget widget-${widget.widgetType}`}>
         {widget.title && <h3 class="widget-title">{widget.title}</h3>}
         <div class="widget-content" set:html={renderWidgetContent(widget)} />
@@ -40,7 +41,7 @@ function renderWidgetContent(widget: SidebarWidget): string {
   }
 
   {
-    widgets.length === 0 && settings.donationLink && (
+    displayWidgets.length === 0 && settings.donationLink && (
       <div class="widget widget-donation">
         <h3 class="widget-title">Support Our Mission</h3>
         <p>Your generosity makes our work possible.</p>
