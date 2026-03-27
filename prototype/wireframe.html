@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en-CA">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wireframe - St. Stephen-in-the-Fields</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: #fff;
+      }
+      .outer {
+        max-width: 1200px;
+        margin: 0 auto;
+        border: 2px dashed #333;
+        padding: 10px;
+      }
+      header {
+        background: #e0e0e0;
+        padding: 20px;
+        text-align: center;
+        border: 1px solid #999;
+        margin-bottom: 10px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 1.5em;
+      }
+      .address-bar {
+        background: #f0f0f0;
+        padding: 10px;
+        text-align: center;
+        border: 1px dashed #999;
+        margin-bottom: 10px;
+        font-size: 0.9em;
+      }
+      nav {
+        background: #d0d0d0;
+        padding: 0;
+        border: 1px solid #999;
+        margin-bottom: 10px;
+      }
+      #menu {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+      }
+      #menu li {
+        padding: 15px 25px;
+        border-right: 1px solid #999;
+      }
+      #menu li:last-child {
+        border-right: none;
+      }
+      #menu li.active {
+        background: #333;
+        color: #fff;
+      }
+      .wrapper {
+        padding: 10px;
+      }
+      .container {
+        display: flex;
+        gap: 20px;
+      }
+      main {
+        flex: 1;
+        background: #f5f5f5;
+        padding: 20px;
+        border: 1px solid #999;
+        min-width: 0;
+      }
+      aside {
+        width: 300px;
+        flex-shrink: 0;
+        background: #f5f5f5;
+        padding: 20px;
+        border: 1px solid #999;
+      }
+      .alert-box {
+        background: #ddd;
+        padding: 15px;
+        border: 1px dashed #666;
+        margin-bottom: 20px;
+      }
+      .welcome {
+        margin-bottom: 30px;
+      }
+      .welcome h2 {
+        margin-top: 0;
+      }
+      .featured-image {
+        width: 100%;
+        height: 200px;
+        background: #ccc;
+        display: block;
+        margin: 20px 0;
+        border: 1px dashed #999;
+      }
+      .site-previews {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      .preview-block {
+        background: #e8e8e8;
+        padding: 15px;
+        border: 1px solid #999;
+      }
+      .preview-block h3 {
+        margin-top: 0;
+      }
+      .preview-link {
+        color: #333;
+        text-decoration: underline;
+      }
+      .widget {
+        background: #e8e8e8;
+        padding: 15px;
+        border: 1px solid #999;
+        margin-bottom: 15px;
+      }
+      .widget h3 {
+        margin-top: 0;
+        border-bottom: 1px solid #999;
+        padding-bottom: 10px;
+      }
+      .schedule-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .schedule-list li {
+        padding: 8px 0;
+        border-bottom: 1px dotted #999;
+      }
+      .schedule-list li:last-child {
+        border-bottom: none;
+      }
+      .donation-grid {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      .donate-btn {
+        flex: 1;
+        padding: 10px;
+        background: #ccc;
+        text-align: center;
+        border: 1px solid #999;
+        text-decoration: none;
+        color: #333;
+      }
+      .social-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .social-links li {
+        padding: 5px 0;
+      }
+      .social-links a {
+        color: #333;
+      }
+      .badge {
+        width: 100%;
+        height: 120px;
+        background: #ccc;
+        border: 1px dashed #999;
+        display: block;
+      }
+      footer {
+        background: #e0e0e0;
+        padding: 15px;
+        text-align: center;
+        border: 1px solid #999;
+        margin-top: 10px;
+      }
+      footer p {
+        margin: 0;
+      }
+      @media (max-width: 768px) {
+        .container {
+          flex-direction: column;
+        }
+        aside {
+          width: 100%;
+        }
+        #menu {
+          flex-wrap: wrap;
+        }
+        #menu li {
+          border-right: none;
+          border-bottom: 1px solid #999;
+        }
+      }
+    </style>
+  </head>
+  <body id="home">
+    <div class="outer">
+      <header role="banner">
+        <div id="site-branding">
+          <h1>Church of Saint Stephen-in-the-Fields</h1>
+        </div>
+      </header>
+
+      <div class="address-bar">
+        Address bar with location and diocese link
+      </div>
+
+      <nav role="navigation">
+        <ul id="menu">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Worship</a></li>
+          <li><a href="#">Outreach</a></li>
+          <li><a href="#">Arts</a></li>
+          <li><a href="#">History</a></li>
+        </ul>
+      </nav>
+
+      <div class="wrapper">
+        <div class="container">
+          <main role="main">
+            <section class="alert-box christmas">
+              <h2>Alert Box - Featured Content</h2>
+              <p>Temporary notices, announcements</p>
+            </section>
+
+            <article class="welcome">
+              <h2>Welcome Section</h2>
+              <p>Introductory text about the church community</p>
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'/%3E"
+                alt="Featured image placeholder"
+                class="featured-image"
+              />
+              <p>Additional welcome content paragraphs</p>
+            </article>
+
+            <h2>Programs Section</h2>
+            <section class="site-previews">
+              <div class="preview-block">
+                <h3>Program 1</h3>
+                <p>Description of weekend breakfast programme</p>
+                <a href="#" class="preview-link">Learn more →</a>
+              </div>
+              <div class="preview-block">
+                <h3>Program 2</h3>
+                <p>Description of safe space drop-in</p>
+                <a href="#" class="preview-link">Learn more →</a>
+              </div>
+              <div class="preview-block">
+                <h3>Program 3</h3>
+                <p>Description of arts and music offerings</p>
+                <a href="#" class="preview-link">Learn more →</a>
+              </div>
+            </section>
+          </main>
+
+          <aside role="complementary">
+            <section id="next-services" class="widget service-schedule">
+              <h3>Weekly Services</h3>
+              <ul class="schedule-list">
+                <li>Mon - Wed: Evening Prayer</li>
+                <li>Tuesdays: Meditation (Zoom)</li>
+                <li>Wednesdays: Said Mass</li>
+              </ul>
+            </section>
+
+            <section class="widget donations">
+              <h3>Online Donations</h3>
+              <div class="donation-grid">
+                <a href="#" class="donate-btn">PayPal</a>
+                <a href="#" class="donate-btn">CanadaHelps</a>
+              </div>
+              <p class="small-text">Pre-authorized giving info</p>
+            </section>
+
+            <section class="widget social">
+              <p>Follow us on social media</p>
+              <ul class="social-links">
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">YouTube</a></li>
+                <li><a href="#">Twitter</a></li>
+              </ul>
+            </section>
+
+            <section class="widget badges">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='170'/%3E"
+                alt="Affirming Congregation badge"
+                class="badge"
+              />
+            </section>
+          </aside>
+        </div>
+      </div>
+
+      <footer role="contentinfo">
+        <p>Footer - Copyright and site info</p>
+      </footer>
+    </div>
+  </body>
+</html>
