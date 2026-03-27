@@ -1,6 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import Header from '../components/Header.astro';
+import AddressBar from '../components/AddressBar.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 import type { SiteSettings } from '../lib/types';
@@ -17,16 +18,10 @@ const { title, settings } = Astro.props;
 <BaseLayout title={title}>
   <div class="outer">
     <Header settings={settings} />
+    <AddressBar settings={settings} />
     <Navigation items={settings.navigation} />
     <div class="wrapper">
-      <div class="container">
-        <main>
-          <slot />
-        </main>
-        <aside role="complementary">
-          <slot name="sidebar" />
-        </aside>
-      </div>
+      <slot />
     </div>
     <Footer copyright={settings.footerCopyright} socialLinks={settings.socialLinks} />
   </div>
