@@ -20,6 +20,8 @@
     "*.{json,md,css,html}": "prettier --write"
   },
   "dependencies": {
+    "@sanity/client": "^7.20.0",
+    "@sanity/image-url": "^2.1.0",
     "astro": "^5.0.0"
   },
   "devDependencies": {
