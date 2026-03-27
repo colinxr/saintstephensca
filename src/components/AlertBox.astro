@@ -1,0 +1,111 @@
+---
+import type { PortableTextBlock } from 'sanity';
+
+interface Alert {
+  title?: string;
+  content: PortableTextBlock[];
+  style?: 'default' | 'christmas' | 'urgent';
+}
+
+interface Props {
+  alert: Alert;
+  pageSlug?: string;
+}
+
+const { alert, pageSlug = '' } = Astro.props;
+const dismissKey = `alert-dismissed-${pageSlug}`;
+---
+
+{
+  alert && (
+    <div
+      class={`alert-box alert-${alert.style || 'default'}`}
+      role="alert"
+      data-dismiss-key={dismissKey}
+    >
+      <button class="alert-close" aria-label="Dismiss alert" type="button">
+        &times;
+      </button>
+      {alert.title && <strong class="alert-title">{alert.title}</strong>}
+      <div class="alert-content">
+        <slot />
+      </div>
+    </div>
+  )
+}
+
+<style>
+  .alert-box {
+    padding: var(--space-md);
+    margin-bottom: var(--space-md);
+    border-radius: 4px;
+    position: relative;
+  }
+
+  .alert-default {
+    background: var(--alert-bg-color);
+    border: 1px solid var(--border-color);
+  }
+
+  .alert-urgent {
+    background: #fee;
+    border: 2px solid #c00;
+  }
+
+  .alert-christmas {
+    background: var(--accent-muted);
+    border: 1px solid var(--accent-dark);
+  }
+
+  .alert-title {
+    display: block;
+    margin-bottom: var(--space-sm);
+  }
+
+  .alert-content :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .alert-close {
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-color);
+    padding: 0 var(--space-xs);
+    line-height: 1;
+  }
+
+  .alert-close:hover,
+  .alert-close:focus {
+    color: var(--text-color);
+    opacity: 0.7;
+  }
+
+  .alert-close:focus {
+    outline: 2px solid var(--link-color);
+    outline-offset: 2px;
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.alert-box').forEach((alertBox) => {
+    const dismissKey = alertBox.getAttribute('data-dismiss-key');
+
+    if (dismissKey && sessionStorage.getItem(dismissKey) === 'true') {
+      alertBox.remove();
+      return;
+    }
+
+    const closeBtn = alertBox.querySelector('.alert-close');
+    closeBtn?.addEventListener('click', () => {
+      if (dismissKey) {
+        sessionStorage.setItem(dismissKey, 'true');
+      }
+      alertBox.remove();
+    });
+  });
+</script>
