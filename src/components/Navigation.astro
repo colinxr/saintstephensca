@@ -1,0 +1,26 @@
+---
+import type { NavigationItem } from '../lib/types';
+
+interface Props {
+  items: NavigationItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav aria-label="Main navigation">
+  <ul>
+    {items.map(item => (
+      <li>
+        <a href={item.href}>{item.label}</a>
+        {item.children && item.children.length > 0 && (
+          <ul>
+            {item.children.map(child => (
+              <li><a href={child.href}>{child.label}</a></li>
+            ))}
+          </ul>
+        )}
+      </li>
+    ))}
+  </ul>
+</nav>

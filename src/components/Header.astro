@@ -1,0 +1,30 @@
+---
+import type { SiteSettings } from '../lib/types';
+
+interface Props {
+  settings: SiteSettings;
+}
+
+const { settings } = Astro.props;
+---
+
+<header role="banner">
+  <div id="site-branding">
+    <h1>
+      <a href="/">{settings.churchName}</a>
+    </h1>
+    {settings.headerImage && (
+      <img 
+        src={settings.headerImage.asset._ref ? `https://cdn.sanity.io/images/${import.meta.env.SANITY_PROJECT_ID}/${import.meta.env.SANITY_DATASET || 'production'}/${settings.headerImage.asset._ref.replace('image-', '').replace('-jpg', '.jpg').replace('-png', '.png').replace('-webp', '.webp')}` : ''} 
+        alt="Saint Stephen-in-the-Fields church building"
+        class="header-image"
+      />
+    )}
+  </div>
+  <div class="address-bar">
+    <address>{settings.address}</address>
+    {settings.diocesanLink && (
+      <a href={settings.diocesanLink}>Anglican Diocese of Toronto</a>
+    )}
+  </div>
+</header>

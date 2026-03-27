@@ -1,8 +1,13 @@
-import { defineConfig } from 'sanity';
-import { structureTool } from 'sanity/structure';
-import { schemaTypes } from './schemas';
+import { defineConfig } from 'sanity'
+import { structureTool } from 'sanity/structure'
+import { visionTool } from '@sanity/vision'
+import { previewPlugin } from 'sanity-plugin-preview'
+import { schemaTypes } from './schemas'
 
 export default defineConfig({
+  schema: {
+    types: schemaTypes,
+  },
   name: 'saintstephensca',
   title: 'Saint Stephen-in-the-Fields',
   projectId: process.env.SANITY_PROJECT_ID,
@@ -24,6 +29,9 @@ export default defineConfig({
               .child(S.documentList().title('Sidebar Widgets').filter('_type == "sidebarWidget"')),
           ]),
     }),
+    previewPlugin({
+      previewUrl: '/preview'
+    })
   ],
   schema: { types: schemaTypes },
-});
+})
