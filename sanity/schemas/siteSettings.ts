@@ -2,12 +2,13 @@ export default {
   name: 'siteSettings',
   title: 'Site Settings',
   type: 'document',
-  __experimental_actions: ['update', 'publish'],
   fields: [
     { name: 'churchName', title: 'Church Name', type: 'string' },
     { name: 'tagline', title: 'Tagline', type: 'string' },
     { name: 'address', title: 'Address', type: 'text' },
-    { name: 'headerImage', title: 'Header Image', type: 'image' },
+    { name: 'headerImage', title: 'Header Image', type: 'image', options: { hotspot: true }, fields: [
+      { name: 'alt', title: 'Alt Text', type: 'string' }
+    ] },
     { name: 'navigation', title: 'Navigation', type: 'array', of: [{ type: 'menuItem' }] },
     { name: 'footerCopyright', title: 'Footer Copyright', type: 'string' },
     { name: 'socialLinks', title: 'Social Links', type: 'array', of: [{ type: 'object', fields: [

@@ -16,14 +16,11 @@ export default defineConfig({
               .title('Pages')
               .child(S.documentList().title('Pages').filter('_type == "page"')),
             S.listItem()
-              .title('Navigation')
-              .child(S.documentList().title('Navigation').filter('_type == "navigation"')),
-            S.listItem()
               .title('Alerts')
               .child(S.documentList().title('Alerts').filter('_type == "alert"')),
             S.listItem()
-              .title('Sidebar Blocks')
-              .child(S.documentList().title('Sidebar Blocks').filter('_type == "sidebarBlock"')),
+              .title('Sidebar Widgets')
+              .child(S.documentList().title('Sidebar Widgets').filter('_type == "sidebarWidget"')),
           ]),
     }),
   ],

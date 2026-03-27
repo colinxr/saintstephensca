@@ -11,7 +11,7 @@ export default {
       { type: 'alignedImage' }
     ]},
     { name: 'sidebarWidgets', title: 'Sidebar', type: 'array', of: [
-      { type: 'string' }
+      { type: 'reference', to: [{ type: 'sidebarWidget' }] }
     ]}
   ]
 }

@@ -10,7 +10,7 @@ export default {
         { title: 'Center', value: 'center' },
         { title: 'Right', value: 'right' }
       ]
-    }},
+    }, validation: (Rule) => Rule.required() },
     { name: 'caption', title: 'Caption', type: 'string' },
     { name: 'alt', title: 'Alt Text', type: 'string', validation: (Rule) => Rule.required().error('Alt text is required for accessibility') }
   ]
