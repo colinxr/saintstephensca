@@ -20,9 +20,9 @@ const { title, settings } = Astro.props;
     <Header settings={settings} />
     <AddressBar settings={settings} />
     <Navigation items={settings.navigation} />
-    <div class="wrapper">
+    <main id="main-content" role="main" class="wrapper">
       <slot />
-    </div>
+    </main>
     <Footer copyright={settings.footerCopyright} socialLinks={settings.socialLinks} />
   </div>
 </BaseLayout>
