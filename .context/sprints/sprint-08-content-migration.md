@@ -9,20 +9,46 @@
 ## Tickets
 
 ### SPRINT-8-000: Sitemap Confirmation
-**Estimate:** 4 hours  
+**Estimate:** 2 hours  
 **Acceptance Criteria:**
 - [ ] Final page list confirmed (no pages to add or remove)
 - [ ] Navigation structure (dropdowns) confirmed
 - [ ] URL structure documented
 - [ ] Any page deletions or URL changes noted for redirects
 
-**Implementation:**
-Review existing TextPattern site and confirm:
-1. List all current pages
-2. Confirm which pages are needed in new site
-3. Document dropdown menu structure
-4. Note any URL changes needed
-5. Get stakeholder approval before proceeding with migration
+**CONFIRMED SITEMAP:**
+
+| Page | Type | URL |
+|------|------|-----|
+| Home | Page | `/` |
+| Contact | Dropdown | `/contact` |
+| └ Address, Phone, Email | Sub-page | `/contact/address` |
+| └ Clergy and Staff | Sub-page | `/contact/clergy` |
+| Worship | Dropdown | `/worship` |
+| └ Our Weekly Services | Sub-page | `/worship/services` |
+| └ Children | Sub-page | `/worship/children` |
+| └ Livestreamed Services | Sub-page | `/worship/livestream` |
+| Outreach | Dropdown | `/outreach` |
+| └ Weekend Breakfast Programme | Sub-page | `/outreach/breakfast` |
+| └ Safe Space Drop In | Sub-page | `/outreach/safe-space` |
+| └ Relationship-Based Support | Sub-page | `/outreach/support` |
+| └ Our Neighbourhood | Sub-page | `/outreach/neighbourhood` |
+| └ Poverty and Income Inequality | Sub-page | `/outreach/poverty` |
+| History | Page | `/history` |
+
+**Total: 5 pages + 10 sub-pages = 15 pages across 3 dropdowns**
+
+**Navigation Schema Required:**
+```typescript
+{
+  label: "Contact",
+  link: "/contact",
+  children: [
+    { label: "Address, Phone, Email", link: "/contact/address" },
+    { label: "Clergy and Staff", link: "/contact/clergy" }
+  ]
+}
+```
 
 **IMPORTANT:** This step prevents building pages that will be deleted. Do not skip.
 
@@ -39,9 +65,21 @@ Review existing TextPattern site and confirm:
 Create spreadsheet/document with:
 | Page Title | URL | Content Type | Images | Notes |
 |------------|-----|-------------|--------|-------|
-| Home | / | Welcome, services, featured | 2 | |
-| About | /about | History, staff | 5 | |
-| ... | ... | ... | ... | |
+| Home | / | Welcome content | TBD | |
+| Contact | /contact | Dropdown parent | - | |
+| Address, Phone, Email | /contact/address | Contact info | TBD | |
+| Clergy and Staff | /contact/clergy | Staff bios | TBD | |
+| Worship | /worship | Dropdown parent | - | |
+| Our Weekly Services | /worship/services | Service schedule | TBD | |
+| Children | /worship/children | Children's programs | TBD | |
+| Livestreamed Services | /worship/livestream | Livestream info | TBD | |
+| Outreach | /outreach | Dropdown parent | - | |
+| Weekend Breakfast Programme | /outreach/breakfast | Program info | TBD | |
+| Safe Space Drop In | /outreach/safe-space | Program info | TBD | |
+| Relationship-Based Support | /outreach/support | Program info | TBD | |
+| Our Neighbourhood | /outreach/neighbourhood | Community info | TBD | |
+| Poverty and Income Inequality | /outreach/poverty | Advocacy info | TBD | |
+| History | /history | Historical content | TBD | |
 
 ---
 
