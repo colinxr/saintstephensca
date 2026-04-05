@@ -55,7 +55,12 @@ export async function getSiteSettings() {
       },
       footerCopyright,
       socialLinks,
-      donationLink
+      donationLink,
+      "globalAlert": globalAlert->{
+        title,
+        content,
+        style
+      }
     }
   `);
 }
@@ -66,12 +71,6 @@ export async function getPageBySlug(slug: string) {
     *[_type == "page" && slug.current == $slug][0] {
       title,
       slug,
-      "alertBox": alertBox->{
-        title,
-        content,
-        style,
-        show
-      },
       mainContent,
       sidebarWidgets[]->{
         widgetType,
@@ -98,12 +97,6 @@ export async function getPreviewPage(slug: string) {
       _id,
       title,
       slug,
-      "alertBox": alertBox->{
-        title,
-        content,
-        style,
-        show
-      },
       mainContent,
       sidebarWidgets[]->{
         widgetType,

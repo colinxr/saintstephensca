@@ -29,6 +29,12 @@ export interface Navigation {
   items: NavigationItem[];
 }
 
+export interface Alert {
+  title?: string;
+  content: unknown[];
+  style?: 'default' | 'christmas' | 'urgent';
+}
+
 export interface SiteSettings {
   churchName: string;
   headerImage?: SanityImage;
@@ -37,4 +43,5 @@ export interface SiteSettings {
   footerCopyright: string;
   socialLinks: SocialLink[];
   mainNavigation?: Navigation;
+  globalAlert?: Alert;
 }

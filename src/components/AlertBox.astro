@@ -1,19 +1,15 @@
 ---
-import type { PortableTextBlock } from 'sanity';
-
 interface Alert {
   title?: string;
-  content: PortableTextBlock[];
   style?: 'default' | 'christmas' | 'urgent';
 }
 
 interface Props {
   alert: Alert;
-  pageSlug?: string;
 }
 
-const { alert, pageSlug = '' } = Astro.props;
-const dismissKey = `alert-dismissed-${pageSlug}`;
+const { alert } = Astro.props;
+const dismissKey = `alert-dismissed-global`;
 ---
 
 {

@@ -3,7 +3,9 @@ import BaseLayout from './BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import AlertBox from '../components/AlertBox.astro';
 import type { SiteSettings } from '../lib/types';
+import { renderPortableText } from '../lib/portable-text';
 import '../styles/layout.css';
 
 interface Props {
@@ -32,6 +34,7 @@ const defaultSettings: SiteSettings = {
       { label: 'History', link: '/history' },
     ],
   },
+  globalAlert: undefined,
 };
 
 const mergedSettings = settings || defaultSettings;
@@ -42,6 +45,13 @@ const mergedSettings = settings || defaultSettings;
     <Header settings={mergedSettings} />
     <Navigation items={mergedSettings.mainNavigation?.items || []} />
     <main id="main-content" role="main" class="wrapper">
+      {
+        mergedSettings.globalAlert && (
+          <AlertBox alert={mergedSettings.globalAlert}>
+            <Fragment set:html={renderPortableText(mergedSettings.globalAlert.content)} />
+          </AlertBox>
+        )
+      }
       <slot />
     </main>
     <Footer copyright={mergedSettings.footerCopyright} socialLinks={mergedSettings.socialLinks} />
