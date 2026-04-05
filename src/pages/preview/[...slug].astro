@@ -2,7 +2,6 @@
 export const prerender = false;
 
 import PageLayout from '../../layouts/PageLayout.astro';
-import AlertBox from '../../components/AlertBox.astro';
 import Article from '../../components/Article.astro';
 import Sidebar from '../../components/Sidebar.astro';
 import { getSiteSettings, getPreviewPage } from '../../lib/sanity';
@@ -26,8 +25,6 @@ if (!page) {
 
   <div class="page-content">
     <div class="main-wrapper">
-      {page.alertBox?.show && <AlertBox alert={page.alertBox} pageSlug={page.slug?.current} />}
-
       <Article title={page.title}>
         <Fragment set:html={renderPortableText(page.mainContent)} />
       </Article>

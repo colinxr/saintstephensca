@@ -1,6 +1,5 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
-import AlertBox from '../components/AlertBox.astro';
 import Article from '../components/Article.astro';
 import Sidebar from '../components/Sidebar.astro';
 import { getSiteSettings, getHomePage } from '../lib/sanity';
@@ -17,8 +16,6 @@ const page = await getHomePage();
     <PageLayout title={settings.churchName} settings={settings}>
       <div class="page-content">
         <div class="main-wrapper">
-          {page.alertBox?.show && <AlertBox alert={page.alertBox} pageSlug={page.slug?.current} />}
-
           <Article title={page.title}>
             <Fragment set:html={renderPortableText(page.mainContent)} />
           </Article>
@@ -39,7 +36,14 @@ const page = await getHomePage();
         address: 'Kensington Market, Toronto',
         footerCopyright: '© 2026 Saint Stephen-in-the-Fields',
         socialLinks: [],
-        navigation: [],
+        mainNavigation: {
+          _id: 'default',
+          title: 'Main Navigation',
+          items: [
+            { label: 'Home', link: '/' },
+            { label: 'Contact', link: '/contact' },
+          ],
+        },
       }}
     >
       <div class="page-content">
