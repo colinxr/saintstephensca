@@ -17,6 +17,23 @@ export default defineConfig({
           .title('Content')
           .items([
             S.listItem()
+              .title('Site Settings')
+              .child(
+                S.document()
+                  .title('Site Settings')
+                  .schemaType('siteSettings')
+                  .documentId('siteSettings')
+              ),
+            S.listItem()
+              .title('Navigation')
+              .child(
+                S.document()
+                  .title('Main Navigation')
+                  .schemaType('navigation')
+                  .documentId('mainNavigation')
+              ),
+            S.divider(),
+            S.listItem()
               .title('Pages')
               .child(S.documentList().title('Pages').filter('_type == "page"')),
             S.listItem()
