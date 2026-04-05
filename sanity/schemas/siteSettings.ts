@@ -36,5 +36,12 @@ export default {
       ],
     },
     { name: 'donationLink', title: 'Donation Link', type: 'url' },
+    {
+      name: 'globalAlert',
+      title: 'Global Alert',
+      type: 'reference',
+      to: [{ type: 'alert' }],
+      description: 'Select an alert to display on all pages. Leave empty to hide.',
+    },
   ],
 };

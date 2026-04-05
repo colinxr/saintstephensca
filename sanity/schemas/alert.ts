@@ -18,12 +18,5 @@ export default {
       },
       initialValue: 'default',
     },
-    {
-      name: 'show',
-      title: 'Show',
-      type: 'boolean',
-      initialValue: false,
-      description: 'Display this alert on the site',
-    },
   ],
 };
