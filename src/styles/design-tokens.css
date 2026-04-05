@@ -94,9 +94,9 @@
   color: var(--bg-color);
   padding: 0.75rem 1.5rem;
   font-size: 0.85rem;
+  font-weight: 600;
   line-height: 1.4;
   border-bottom: 2px solid var(--border-color-dark);
-  text-align: center;
 }
 
 .address-bar .diocese-link {
@@ -110,7 +110,7 @@
 }
 
 .address-bar .sep {
-  margin: 0 0.5em;
+  margin: 0 0.25em;
   opacity: 0.7;
 }
 
@@ -120,4 +120,16 @@
 
 .address-bar span:not(.sep) {
   white-space: nowrap;
+}
+
+.address-bar .progress-flag {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 0.5em;
+  vertical-align: middle;
+}
+
+.address-bar .progress-flag svg {
+  display: block;
+  border-radius: 2px;
 }

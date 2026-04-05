@@ -38,8 +38,31 @@ const headerStyle = headerImageUrl
 </header>
 
 <div class="address-bar">
-  <span>Saint Stephen-in-the-Fields</span>
-  <span class="sep">|</span>
+  <span class="progress-flag" aria-label="Progress Pride Flag" title="LGBTQ+ Affirming">
+    <svg
+      width="24"
+      height="16"
+      viewBox="0 0 24 16"
+      xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-label="Progress Pride Flag"
+    >
+      <!-- Rainbow stripes -->
+      <rect width="24" height="2.29" fill="#E40303"></rect>
+      <rect y="2.29" width="24" height="2.29" fill="#FF8C00"></rect>
+      <rect y="4.57" width="24" height="2.29" fill="#FFED00"></rect>
+      <rect y="6.86" width="24" height="2.29" fill="#008026"></rect>
+      <rect y="9.14" width="24" height="2.29" fill="#24408E"></rect>
+      <rect y="11.43" width="24" height="2.29" fill="#732982"></rect>
+      <rect y="13.71" width="24" height="2.29" fill="#613915"></rect>
+      <!-- Progress chevron -->
+      <polygon points="0,0 8,8 0,16" fill="#000"></polygon>
+      <polygon points="0,0.5 7.5,8 0,15.5" fill="#613915"></polygon>
+      <polygon points="0,1 7,8 0,15" fill="#74D7EE"></polygon>
+      <polygon points="0,1.5 6.5,8 0,14.5" fill="#FFACB8"></polygon>
+      <polygon points="0,2 6,8 0,14" fill="#fff"></polygon>
+    </svg>
+  </span>
   <span>{address}</span>
   <span class="sep">|</span>
   <a href={diocesanLink} class="diocese-link">Anglican Diocese of Toronto</a>
