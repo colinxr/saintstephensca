@@ -1,7 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import Header from '../components/Header.astro';
-import AddressBar from '../components/AddressBar.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 import type { SiteSettings } from '../lib/types';
@@ -9,20 +8,42 @@ import '../styles/layout.css';
 
 interface Props {
   title: string;
-  settings: SiteSettings;
+  settings?: SiteSettings;
 }
 
 const { title, settings } = Astro.props;
+
+// Default settings for when Sanity data isn't available
+const defaultSettings: SiteSettings = {
+  churchName: 'Saint Stephen-in-the-Fields',
+  address: '103 Bellevue Ave, Toronto, ON M5T 2N8',
+  diocesanLink: 'https://www.toronto.anglican.ca',
+  footerCopyright: '© 2026 Church of Saint Stephen-in-the-Fields',
+  socialLinks: [],
+  mainNavigation: {
+    _id: 'default',
+    title: 'Main Navigation',
+    items: [
+      { label: 'Home', link: '/' },
+      { label: 'Contact', link: '/contact' },
+      { label: 'Worship', link: '/worship' },
+      { label: 'Outreach', link: '/outreach' },
+      { label: 'Arts', link: '/arts' },
+      { label: 'History', link: '/history' },
+    ],
+  },
+};
+
+const mergedSettings = settings || defaultSettings;
 ---
 
 <BaseLayout title={title}>
   <div class="outer">
-    <Header settings={settings} />
-    <AddressBar settings={settings} />
-    <Navigation items={settings.navigation} />
+    <Header settings={mergedSettings} />
+    <Navigation items={mergedSettings.mainNavigation?.items || []} />
     <main id="main-content" role="main" class="wrapper">
       <slot />
     </main>
-    <Footer copyright={settings.footerCopyright} socialLinks={settings.socialLinks} />
+    <Footer copyright={mergedSettings.footerCopyright} socialLinks={mergedSettings.socialLinks} />
   </div>
 </BaseLayout>

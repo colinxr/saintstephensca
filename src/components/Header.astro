@@ -1,24 +1,46 @@
 ---
 import type { SiteSettings } from '../lib/types';
+import { urlFor } from '../lib/sanity';
 
 interface Props {
-  settings: SiteSettings;
+  settings?: SiteSettings;
 }
 
 const { settings } = Astro.props;
+
+// Default values if settings not provided
+const DEFAULT_ADDRESS = '103 Bellevue Ave, Toronto, ON M5T 2N8';
+const DEFAULT_DIOCESE_LINK = 'https://www.toronto.anglican.ca';
+
+// Build the header background image URL from Sanity
+let headerImageUrl: string | null = null;
+
+if (settings?.headerImage?.asset?._ref) {
+  headerImageUrl = urlFor(settings.headerImage).url();
+}
+
+// Get address and diocese link with fallbacks
+const address = settings?.address || DEFAULT_ADDRESS;
+const diocesanLink = settings?.diocesanLink || DEFAULT_DIOCESE_LINK;
+
+// Create the background style with gradient overlay
+const headerStyle = headerImageUrl
+  ? `background: linear-gradient(to top, rgba(43, 37, 0, 0.85) 0%, rgba(43, 37, 0, 0) 100%), url("${headerImageUrl}") center center no-repeat; background-size: cover;`
+  : '';
 ---
 
-<header role="banner">
+<header role="banner" class="site-header" style={headerStyle}>
   <div id="site-branding">
     <h1>
-      <a href="/">{settings.churchName}</a>
+      <a href="/">Church of Saint Stephen-in-the-Fields</a>
     </h1>
-    {settings.headerImage && (
-      <img 
-        src={settings.headerImage.asset._ref ? `https://cdn.sanity.io/images/${import.meta.env.SANITY_PROJECT_ID}/${import.meta.env.SANITY_DATASET || 'production'}/${settings.headerImage.asset._ref.replace('image-', '').replace('-jpg', '.jpg').replace('-png', '.png').replace('-webp', '.webp')}` : ''} 
-        alt="Saint Stephen-in-the-Fields church building"
-        class="header-image"
-      />
-    )}
   </div>
 </header>
+
+<div class="address-bar">
+  <span>Saint Stephen-in-the-Fields</span>
+  <span class="sep">|</span>
+  <span>{address}</span>
+  <span class="sep">|</span>
+  <a href={diocesanLink} class="diocese-link">Anglican Diocese of Toronto</a>
+</div>

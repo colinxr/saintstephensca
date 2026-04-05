@@ -9,11 +9,35 @@ const { copyright, socialLinks = [] } = Astro.props;
 
 <footer role="contentinfo">
   <p>&copy; {new Date().getFullYear()} {copyright}</p>
-  {socialLinks.length > 0 && (
-    <nav aria-label="Social media links">
-      {socialLinks.map(link => (
-        <a href={link.url}>{link.platform}</a>
-      ))}
-    </nav>
-  )}
+  {
+    socialLinks && socialLinks.length > 0 && (
+      <nav aria-label="Social media links">
+        {socialLinks.map((link) => (
+          <a href={link.url}>{link.platform}</a>
+        ))}
+      </nav>
+    )
+  }
 </footer>
+
+<style>
+  footer {
+    padding: 3rem 1.5rem;
+    text-align: center;
+    border-top: 2px solid var(--accent-color);
+    font-size: 0.9rem;
+    background: var(--bg-alt);
+  }
+
+  footer p {
+    margin: 0;
+  }
+
+  footer nav {
+    margin-top: 1rem;
+  }
+
+  footer nav a {
+    margin: 0 0.5rem;
+  }
+</style>

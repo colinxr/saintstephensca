@@ -23,6 +23,12 @@ export interface SanityImage {
   };
 }
 
+export interface Navigation {
+  _id: string;
+  title: string;
+  items: NavigationItem[];
+}
+
 export interface SiteSettings {
   churchName: string;
   headerImage?: SanityImage;
@@ -30,5 +36,5 @@ export interface SiteSettings {
   diocesanLink?: string;
   footerCopyright: string;
   socialLinks: SocialLink[];
-  navigation: NavigationItem[];
+  mainNavigation?: Navigation;
 }

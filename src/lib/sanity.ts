@@ -29,8 +29,30 @@ export async function getSiteSettings() {
       churchName,
       tagline,
       address,
+      diocesanLink,
       headerImage,
-      navigation,
+      "mainNavigation": mainNavigation->{
+        _id,
+        title,
+        items[]{
+          label,
+          order,
+          "link": page->slug.current,
+          "pageTitle": page->title,
+          children[]{
+            label,
+            order,
+            "link": page->slug.current,
+            "pageTitle": page->title,
+            children[]{
+              label,
+              order,
+              "link": page->slug.current,
+              "pageTitle": page->title
+            }
+          }
+        }
+      },
       footerCopyright,
       socialLinks,
       donationLink
@@ -65,7 +87,8 @@ export async function getPageBySlug(slug: string) {
 }
 
 export async function getHomePage() {
-  return getPageBySlug('home');
+  // Homepage has slug "/" in the CMS
+  return getPageBySlug('/');
 }
 
 export async function getPreviewPage(slug: string) {

@@ -1,0 +1,32 @@
+---
+import type { NavigationItem } from '../lib/types';
+
+interface Props {
+  item: NavigationItem;
+  currentPath?: string;
+}
+
+const { item, currentPath = '' } = Astro.props;
+const hasChildren = item.children && item.children.length > 0;
+const isActive = item.link === currentPath || currentPath.startsWith(item.link + '/');
+---
+
+<li class={isActive ? 'active' : ''}>
+  <a
+    href={item.link || '#'}
+    aria-haspopup={hasChildren ? 'true' : undefined}
+    aria-expanded={hasChildren ? 'false' : undefined}
+    aria-current={isActive ? 'page' : undefined}
+  >
+    {item.label}
+  </a>
+  {
+    hasChildren && (
+      <ul class="submenu">
+        {item.children!.map((child) => (
+          <Astro.self item={child} currentPath={currentPath} />
+        ))}
+      </ul>
+    )
+  }
+</li>

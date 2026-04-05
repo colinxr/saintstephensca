@@ -1,12 +1,14 @@
 ---
-import type { NavigationItem } from '../lib/types';
+import type { NavigationItem as NavigationItemType } from '../lib/types';
+import NavigationItem from './NavigationItem.astro';
 import '../styles/navigation.css';
 
 interface Props {
-  items: NavigationItem[];
+  items: NavigationItemType[];
 }
 
-const { items } = Astro.props;
+const { items = [] } = Astro.props;
+const currentPath = Astro.url.pathname;
 ---
 
 <nav role="navigation" aria-label="Main navigation">
@@ -19,28 +21,7 @@ const { items } = Astro.props;
     <span aria-hidden="true">Menu</span>
   </button>
   <ul id="main-menu" class="menu">
-    {
-      items.map((item) => (
-        <li>
-          <a
-            href={item.link || '#'}
-            aria-haspopup={item.children && item.children.length > 0 ? 'true' : undefined}
-            aria-expanded={item.children && item.children.length > 0 ? 'false' : undefined}
-          >
-            {item.label}
-          </a>
-          {item.children && item.children.length > 0 && (
-            <ul class="submenu">
-              {item.children.map((child) => (
-                <li>
-                  <a href={child.link || '#'}>{child.label}</a>
-                </li>
-              ))}
-            </ul>
-          )}
-        </li>
-      ))
-    }
+    {items?.map((item) => <NavigationItem item={item} currentPath={currentPath} />)}
   </ul>
 </nav>
 
@@ -48,8 +29,8 @@ const { items } = Astro.props;
   document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.querySelector('.menu-toggle');
     const mainMenu = document.getElementById('main-menu');
-    const menuItems = document.querySelectorAll('nav li');
 
+    // Toggle mobile menu
     if (menuToggle && mainMenu) {
       menuToggle.addEventListener('click', () => {
         const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
@@ -58,67 +39,78 @@ const { items } = Astro.props;
       });
     }
 
-    menuItems.forEach((item) => {
-      const link = item.querySelector('a');
-      const submenu = item.querySelector('ul');
+    // Handle all menu items with submenus recursively
+    const setupMenuItem = (item: Element) => {
+      const link = item.querySelector(':scope > a');
+      const submenu = item.querySelector(':scope > ul');
 
-      if (submenu) {
-        link?.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (submenu && link) {
+        // Keyboard navigation for this menu item
+        link.addEventListener('keydown', (e: KeyboardEvent) => {
           if (e.key === 'ArrowDown') {
             e.preventDefault();
-            submenu.style.display = 'block';
-            (link as HTMLAnchorElement).setAttribute('aria-expanded', 'true');
+            (submenu as HTMLElement).style.display = 'block';
+            link.setAttribute('aria-expanded', 'true');
             const firstSubmenuLink = submenu.querySelector('a');
             if (firstSubmenuLink) {
-              (firstSubmenuLink as HTMLAnchorElement).focus();
+              (firstSubmenuLink as HTMLElement).focus();
             }
           }
           if (e.key === 'Escape') {
-            submenu.style.display = 'none';
-            (link as HTMLAnchorElement).setAttribute('aria-expanded', 'false');
-            (link as HTMLAnchorElement).focus();
+            (submenu as HTMLElement).style.display = 'none';
+            link.setAttribute('aria-expanded', 'false');
+            (link as HTMLElement).focus();
           }
         });
 
-        link?.addEventListener('focus', () => {
-          submenu.style.display = 'block';
-          if (link) {
-            (link as HTMLAnchorElement).setAttribute('aria-expanded', 'true');
-          }
+        // Show submenu on focus
+        link.addEventListener('focus', () => {
+          (submenu as HTMLElement).style.display = 'block';
+          link.setAttribute('aria-expanded', 'true');
         });
 
+        // Handle submenu keyboard navigation
         submenu.addEventListener('keydown', (e: KeyboardEvent) => {
           if (e.key === 'Escape') {
-            submenu.style.display = 'none';
-            (link as HTMLAnchorElement).setAttribute('aria-expanded', 'false');
-            (link as HTMLAnchorElement).focus();
+            (submenu as HTMLElement).style.display = 'none';
+            link.setAttribute('aria-expanded', 'false');
+            (link as HTMLElement).focus();
           }
         });
 
-        const submenuLinks = submenu.querySelectorAll('a');
+        // Arrow navigation within submenu
+        const submenuLinks = Array.from(submenu.querySelectorAll(':scope > li > a'));
         submenuLinks.forEach((submenuLink, index) => {
           submenuLink.addEventListener('keydown', (e: KeyboardEvent) => {
             if (e.key === 'ArrowDown') {
               e.preventDefault();
               const nextLink = submenuLinks[index + 1];
               if (nextLink) {
-                (nextLink as HTMLAnchorElement).focus();
+                (nextLink as HTMLElement).focus();
               }
             }
             if (e.key === 'ArrowUp') {
               e.preventDefault();
               if (index === 0) {
-                (link as HTMLAnchorElement).focus();
+                (link as HTMLElement).focus();
               } else {
                 const prevLink = submenuLinks[index - 1];
                 if (prevLink) {
-                  (prevLink as HTMLAnchorElement).focus();
+                  (prevLink as HTMLElement).focus();
                 }
               }
             }
           });
         });
+
+        // Recursively setup nested menu items
+        const nestedItems = submenu.querySelectorAll(':scope > li');
+        nestedItems.forEach(setupMenuItem);
       }
-    });
+    };
+
+    // Setup all top-level menu items
+    const topLevelItems = mainMenu?.querySelectorAll(':scope > li') || [];
+    topLevelItems.forEach(setupMenuItem);
   });
 </script>

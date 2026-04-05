@@ -16,8 +16,8 @@
 
   /* Typography */
   --font-family: 'Public Sans', sans-serif;
-  --font-size-base: 1rem;
-  --line-height-base: 1.6;
+  --font-size-base: 1.1rem;
+  --line-height-base: 1.5;
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -33,13 +33,13 @@
   --bp-wide: 1200px;
 
   /* Layout */
-  --max-width: 1200px;
-  --sidebar-width: 300px;
+  --max-width: 960px;
+  --sidebar-width: 280px;
 }
 
 /* Layout */
 .outer {
-  max-width: 1200px;
+  max-width: 960px;
   margin: 0 auto;
   background: var(--bg-color);
   border-left: 1px solid var(--border-color);
@@ -48,4 +48,76 @@
 
 .wrapper {
   padding: var(--space-md);
+}
+
+/* Header & Banner */
+.site-header {
+  min-height: 180px;
+  padding: 2.5rem 1.5rem;
+  background:
+    linear-gradient(to top, rgba(43, 37, 0, 0.85) 0%, rgba(43, 37, 0, 0) 100%),
+    url('/st-stephen-in-the-fields-church-2021-1024x768.webp') center center no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: flex-end;
+  border-bottom: 8px solid var(--accent-color);
+}
+
+#site-branding {
+  width: 100%;
+  text-align: left;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(43, 37, 0, 0.6);
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.site-header h1 a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.site-header h1 a:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
+/* Address Bar - Secondary Utility Nav */
+.address-bar {
+  background: var(--text-color);
+  color: var(--bg-color);
+  padding: 0.75rem 1.5rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  border-bottom: 2px solid var(--border-color-dark);
+  text-align: center;
+}
+
+.address-bar .diocese-link {
+  color: var(--accent-light);
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.address-bar .diocese-link:hover {
+  color: var(--accent-color);
+}
+
+.address-bar .sep {
+  margin: 0 0.5em;
+  opacity: 0.7;
+}
+
+.address-bar span {
+  display: inline;
+}
+
+.address-bar span:not(.sep) {
+  white-space: nowrap;
 }
