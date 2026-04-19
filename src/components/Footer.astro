@@ -7,7 +7,7 @@ interface Props {
 const { copyright, socialLinks = [] } = Astro.props;
 ---
 
-<footer role="contentinfo">
+<footer role="contentinfo" transition:persist="site-footer">
   <p>&copy; {new Date().getFullYear()} {copyright}</p>
   {
     socialLinks && socialLinks.length > 0 && (
