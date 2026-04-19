@@ -3,20 +3,30 @@ import type { NavigationItem } from '../lib/types';
 
 interface Props {
   item: NavigationItem;
-  currentPath?: string;
+  currentPath: string;
+  parentMap: Map<string, string>;
 }
 
-const { item, currentPath = '' } = Astro.props;
+const { item, currentPath, parentMap } = Astro.props;
 const hasChildren = item.children && item.children.length > 0;
-const isActive = item.link === currentPath || currentPath.startsWith(item.link + '/');
+
+function normalize(slug: string): string {
+  return slug.startsWith('/') ? slug.slice(1) : slug;
+}
+
+const normalizedCurrentPath = normalize(currentPath);
+const normalizedItemLink = normalize(item.link || '');
+const isActive = normalizedItemLink === normalizedCurrentPath;
+const isParentOfCurrentPage = parentMap.get(normalizedCurrentPath) === normalizedItemLink;
+const showActive = isActive || isParentOfCurrentPage;
 ---
 
-<li class={isActive ? 'active' : ''}>
+<li class={showActive ? 'nav-item active' : 'nav-item'} data-link={item.link}>
   <a
     href={item.link || '#'}
     aria-haspopup={hasChildren ? 'true' : undefined}
     aria-expanded={hasChildren ? 'false' : undefined}
-    aria-current={isActive ? 'page' : undefined}
+    aria-current={showActive ? 'page' : undefined}
   >
     {item.label}
   </a>
@@ -24,7 +34,7 @@ const isActive = item.link === currentPath || currentPath.startsWith(item.link +
     hasChildren && (
       <ul class="submenu">
         {item.children!.map((child) => (
-          <Astro.self item={child} currentPath={currentPath} />
+          <Astro.self item={child} {currentPath} {parentMap} />
         ))}
       </ul>
     )

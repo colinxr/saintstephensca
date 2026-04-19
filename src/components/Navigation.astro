@@ -9,9 +9,33 @@ interface Props {
 
 const { items = [] } = Astro.props;
 const currentPath = Astro.url.pathname;
+
+function normalize(slug: string): string {
+  return slug.startsWith('/') ? slug.slice(1) : slug;
+}
+
+function buildParentMap(
+  menuItems: NavigationItemType[],
+  parentMap: Map<string, string> = new Map(),
+  parentLink = ''
+): Map<string, string> {
+  for (const item of menuItems) {
+    const normalizedLink = normalize(item.link || '');
+    const normalizedParent = normalize(parentLink);
+    if (normalizedLink && normalizedParent) {
+      parentMap.set(normalizedLink, normalizedParent);
+    }
+    if (item.children) {
+      buildParentMap(item.children, parentMap, item.link || parentLink);
+    }
+  }
+  return parentMap;
+}
+
+const parentMap = buildParentMap(items);
 ---
 
-<nav role="navigation" aria-label="Main navigation">
+<nav role="navigation" aria-label="Main navigation" data-current-path={currentPath}>
   <button
     class="menu-toggle"
     aria-expanded="false"
@@ -21,12 +45,12 @@ const currentPath = Astro.url.pathname;
     <span aria-hidden="true">Menu</span>
   </button>
   <ul id="main-menu" class="menu">
-    {items?.map((item) => <NavigationItem item={item} currentPath={currentPath} />)}
+    {items?.map((item) => <NavigationItem item={item} {currentPath} parentMap={parentMap} />)}
   </ul>
 </nav>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  function setupNavigation() {
     const menuToggle = document.querySelector('.menu-toggle');
     const mainMenu = document.getElementById('main-menu');
 
@@ -112,5 +136,8 @@ const currentPath = Astro.url.pathname;
     // Setup all top-level menu items
     const topLevelItems = mainMenu?.querySelectorAll(':scope > li') || [];
     topLevelItems.forEach(setupMenuItem);
-  });
+  }
+
+  document.addEventListener('DOMContentLoaded', setupNavigation);
+  document.addEventListener('astro:after-swap', setupNavigation);
 </script>
